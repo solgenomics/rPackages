@@ -12,7 +12,7 @@
 #' @export
 #'
 
-filterGeno <- function (gData=genoDf, maf=0.05, markerFilter=0.6, indFilter=0.8) {
+filterGenoData <- function (gData=genoDf, maf=0.05, markerFilter=0.6, indFilter=0.8) {
 
   ifelse (missing(gData)==T, stop('You need to provide a genotype data.frame argument'),
   ifelse (is.null(gData)==T, stop('Genotype dataset is null.'),
