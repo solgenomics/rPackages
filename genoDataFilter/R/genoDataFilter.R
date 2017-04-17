@@ -19,7 +19,7 @@ filterGenoData <- function (gData=genoDf, maf=0.05, markerFilter=0.6, indFilter=
   ifelse (grep(class(gData), "data.frame", value=T), stop('The genotype dataset is not a data.frame or data.table'), '')))
 
   if (class(gData)[1] == 'data.frame') {
-    gData <- data.table(gData)
+    gData <- data.table(gData, keep.rownames=TRUE)
   }
 
   #remove markers with missing values
