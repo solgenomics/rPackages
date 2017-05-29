@@ -7,6 +7,6 @@ Maintainer: Isaak Y Tecle <iyt2@cornell.edu>
 Description: Calculates genotype adjusted means for a trait. Relies on data structure of the BrAPI type.
 License: GPL-3
 Encoding: UTF-8
-Imports: dplyr (>= 0.5.0), lme4 (>= 1.1.13), lsmeans(>= 2.26.3)
+Imports: dplyr (>= 0.5.0), lme4 (>= 1.1.12), lsmeans(>= 2.26.3)
 LazyData: true
 RoxygenNote: 6.0.1
