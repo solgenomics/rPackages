@@ -8,7 +8,6 @@ Description: Calculates genotype adjusted means for a trait. Relies on data stru
 License: GPL-3
 Encoding: UTF-8
 Imports: dplyr, 
-         lsmeans,
-         lme4
+         lsmeans
 LazyData: true
 RoxygenNote: 6.0.1
