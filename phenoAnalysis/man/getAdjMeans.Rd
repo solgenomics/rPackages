@@ -2,7 +2,7 @@
 % Please edit documentation in R/phenoAnalysis.R
 \name{getAdjMeans}
 \alias{getAdjMeans}
-\title{calculates genotype adjusted means}
+\title{calculates the genotype adjusted means for a trait.}
 \usage{
 getAdjMeans(trialData, traitName = NULL, genotypeEffectType = "fixed")
 }

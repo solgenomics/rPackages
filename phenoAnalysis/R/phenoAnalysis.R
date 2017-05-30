@@ -1,4 +1,6 @@
 #' calculates genotype adjusted means
+#' @import dplyr lsmeans lme4
+NULL
 #'
 #' calculates the genotype adjusted means for a trait.
 #'
@@ -6,7 +8,6 @@
 #' @param traitName a character vector of the trait name of interest in the dataset.
 #' @param genotypeEffectType a character vector indicating the genotype effect type. By default, genotypes variable is considered fixed effects.
 #' @return a dataframe of the adjusted means for the genotypes.
-#' @import dplyr, lsmeans, lme4
 #' @export
 #'
 
