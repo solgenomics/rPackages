@@ -3,23 +3,25 @@
 #' A function for filtering genotype dataset based on minimum allele frequency, fraction of markers and accessions with missing values. It also filters out monomorphic markers.
 #'
 #' @param gData A data.frame or data.table of the genotype dataset
-#' @param maf Minimum allele frequency (MAF) used to filter out a marker, 0 to 1. By default, markers with MAF < 5 percent are removed.
+#' @param maf Minimum allele frequency (MAF) used to filter out a marker, 0 to 1. By default, no MAF filtering done.
 #' @param markerFilter Fraction of missing values in a marker, 0 to 1. By default, markers with > 60 percent missing values are removed.
 #' @param indFilter Fraction of missing values in an accession/genotype, 0 to 1. By default, accessions with > 80 percent missing marker values are removed.
-#' @return A data.frame of the cleaned genotype dataset.
+#' @return A data.frame or data.table of the cleaned genotype dataset.
 #'
 #' @import data.table
 #' @export
 #'
 
-filterGenoData <- function (gData=genoDf, maf=0.05, markerFilter=0.6, indFilter=0.8) {
+filterGenoData <- function (gData=genoDf, maf=0, markerFilter=0.6, indFilter=0.8) {
 
   ifelse (missing(gData)==T, stop('You need to provide a genotype data.frame argument'),
   ifelse (is.null(gData)==T, stop('Genotype dataset is null.'),
-  ifelse (grep(class(gData), "data.frame", value=T), stop('The genotype dataset is not a data.frame or data.table'), '')))
+  ifelse (length(grep( "data.frame", class(gData))) < 1, stop('The genotype dataset is not a data.frame or data.table'), '')))
+
+  origDType <- class(gData)[1]
 
   if (class(gData)[1] == 'data.frame') {
-    gData <- data.table(gData, keep.rownames=TRUE)
+    gData <- data.table(gData, keep.rownames = TRUE)
   }
 
   #remove markers with missing values
@@ -44,9 +46,9 @@ filterGenoData <- function (gData=genoDf, maf=0.05, markerFilter=0.6, indFilter=
   gData[, which(apply(gData, 2,  calculateMAF) < maf) := NULL ]
   message('No. of marker after filtering out < ', maf, ' MAF: ', ncol(gData))
 
-  gData           <- data.frame(gData)
-  rownames(gData) <- gData[, 1]
-  gData[, 1]      <- NULL
+  if (origDType == 'data.frame') {
+    gData           <- as.data.frame(gData)
+  }
 
   return(gData)
 }
@@ -81,3 +83,4 @@ calculateMAF <- function (x) {
 
     return(maf)
 }
+
