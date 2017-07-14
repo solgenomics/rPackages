@@ -23,10 +23,10 @@ roundAlleleDosage <- function(gData) {
 
   cols <- colnames(gData)
   rnd <- function (x) {
-    ifelse(is.numeric(x), round(x, 0), x)
+    ifelse(sapply(x, is.numeric), round(x, 0), x)
   }
 
-  gData[, (cols) := lapply(.SD, rnd), .SDcols=cols]
+  gData[, (cols) := lapply(.SD, rnd)]
 
   if (origDType == 'data.frame') {
     gData <- as.data.frame(gData)
