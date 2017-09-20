@@ -1,7 +1,7 @@
 Package: phenoAnalysis
 Type: Package
 Title: Genotype adjusted means 
-Version: 0.1.0
+Version: 0.1.0.1
 Author: Isaak Y Tecle <iyt2@cornell.edu>
 Maintainer: Isaak Y Tecle <iyt2@cornell.edu>
 Description: Calculates genotype adjusted means for a trait. Relies on data structure of the BrAPI type.

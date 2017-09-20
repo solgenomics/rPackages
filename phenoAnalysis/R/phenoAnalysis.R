@@ -13,6 +13,13 @@ NULL
 
 getAdjMeans <- function (trialData, traitName=NULL, genotypeEffectType='fixed') {
 
+  if (is.null(traitName)) stop('Trait name is missing.')
+
+  tr <- grep(traitName, colnames(trialData))
+  if (length(tr) == 0) {
+    stop('Can not find ', traitName, ' in the data set.')
+  }
+
   genotypeEffectType <<- genotypeEffectType
   traitData          <- structureTraitData(trialData, traitName=traitName)
   adjMeans           <- c()
@@ -277,5 +284,4 @@ structureGenoMeans <- function(modelOut, traitName) {
   }
 
 }
-
 
