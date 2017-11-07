@@ -1,13 +1,16 @@
 Package: phenoAnalysis
 Type: Package
-Title: Genotype adjusted means 
-Version: 0.1.0.1
+Title: Phenotype Data Analysis 
+Version: 0.1.1
 Author: Isaak Y Tecle <iyt2@cornell.edu>
 Maintainer: Isaak Y Tecle <iyt2@cornell.edu>
-Description: Calculates genotype adjusted means for a trait. Relies on data structure of the BrAPI type.
+Description: Calculates genotype adjusted means, anova table for a trait. 
+             Relies on data structure of the BrAPI type.
 License: GPL-3
 Encoding: UTF-8
 Imports: dplyr, 
-         lsmeans
+         lmerTest,
+         lsmeans,
+         stargazer
 LazyData: true
 RoxygenNote: 6.0.1
