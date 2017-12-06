@@ -15,6 +15,8 @@ getAnovaTable(trialData, traitName = NULL, genotypeEffectType = "fixed",
 \item{genotypeEffectType}{a character vector indicating the genotype effect type. By default, genotypes variable is considered fixed effects.}
 
 \item{...}{arguments to be passed to \code{\link[stargazer]{stargazer}}.}
+
+\item{tableType}{a character vector indicating type of anova table output. Defaults to 'html' for web display and 'text' for saving in a file (pass the file name to the 'out' argument to save output in a file) .}
 }
 \value{
 a stargazer formatted anova table of chosen type, html type by default.
