@@ -2,27 +2,24 @@
 % Please edit documentation in R/anovaTable.R
 \name{getAnovaTable}
 \alias{getAnovaTable}
-\title{fits model and generates anova table}
+\title{Generates the anova table}
 \usage{
-getAnovaTable(trialData, traitName = NULL, genotypeEffectType = "fixed",
-  ...)
+getAnovaTable(modelOut, tableType = NULL, traitName = NULL, ...)
 }
 \arguments{
-\item{trialData}{a dataframe of the trial dataset, of the BrAPI structure and naming convention.}
-
-\item{traitName}{a character vector of the trait name of interest in the dataset.}
-
-\item{genotypeEffectType}{a character vector indicating the genotype effect type. By default, genotypes variable is considered fixed effects.}
-
-\item{...}{arguments to be passed to \code{\link[stargazer]{stargazer}}.}
+\item{modelOut}{the anova model output of merModLmerTest class}
 
 \item{tableType}{a character vector indicating type of anova table output. Defaults to 'html' for web display and 'text' for saving in a file (pass the file name to the 'out' argument to save output in a file) .}
+
+\item{traitName}{the trait name to be used in the table title, optional.}
+
+\item{...}{arguments to be passed to \code{\link[stargazer]{stargazer}}.}
 }
 \value{
 a stargazer formatted anova table of chosen type, html type by default.
 }
 \description{
-fits model and generates anova table
+Generates the anova table
 }
 \seealso{
 see \code{\link[stargazer]{stargazer}} to modify the table output.

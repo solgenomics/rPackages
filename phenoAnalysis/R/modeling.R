@@ -15,9 +15,9 @@
 #' @rdname models
 fixedAugmentedRCBD <- function (traitData, traitName) {
 
-  adjMeans <- fixedRCBD(traitData, traitName)
+  modelOut <- fixedRCBD(traitData, traitName)
 
-  return(adjMeans)
+  return(modelOut)
 
 }
 
@@ -25,9 +25,9 @@ fixedAugmentedRCBD <- function (traitData, traitName) {
 #' @rdname models
 randomAugmentedRCBD <- function (traitData, traitName) {
 
-  adjMeans <- randomRCBD(traitData, traitName)
+  modelOut <- randomRCBD(traitData, traitName)
 
-  return(adjMeans)
+  return(modelOut)
 
 }
 

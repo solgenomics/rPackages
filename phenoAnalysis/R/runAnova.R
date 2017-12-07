@@ -19,7 +19,7 @@ runAnova <- function (trialData, traitName=NULL, genotypeEffectType='fixed') {
 
   genotypeEffectType <<- genotypeEffectType
   traitData          <- structureTraitData(trialData, traitName=traitName)
-  anovaTable         <- c()
+  modelOut           <- c()
 
   studyDesign <- trialData[2, 'studyDesign']
   if (is.na(studyDesign) == TRUE) studyDesign <- c('No Design')
