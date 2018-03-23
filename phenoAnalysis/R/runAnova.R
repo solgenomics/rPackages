@@ -55,7 +55,7 @@ runAnova <- function (trialData, traitName=NULL, genotypeEffectType='fixed') {
     }
 
   } else {
-    modelOut <- c('This trial has no design.')
+    modelOut <- c("Can't perform ANOVA on this trait. Because, the trial has no proper or supported experimental design for the trait.")
   }
 
   return(modelOut)
