@@ -67,6 +67,7 @@ getAdjMeans <- function (trialData, traitName=NULL, genotypeEffectType='fixed') 
     adjMeans <- averageTrait(traitData, traitName)
   }
 
+  return (adjMeans)
 }
 
 
