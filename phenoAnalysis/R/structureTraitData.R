@@ -18,7 +18,8 @@ structureTraitData <- function (trialData, traitName=NULL) {
   trialData$blockNumber <- as.factor(trialData$blockNumber)
   trialData$studyYear   <- as.factor(trialData$studyYear)
 
-  colList <- c('germplasmName', 'locationName', 'studyYear', 'blockNumber', 'replicate', traitName)
+  colList <- c('germplasmName', 'locationName', 'studyYear',
+               'blockNumber', 'replicate', traitName)
 
   traitData <- trialData[, colList]
 
@@ -26,6 +27,12 @@ structureTraitData <- function (trialData, traitName=NULL) {
     traitData[, traitName] <- as.numeric(as.character(traitData[, traitName]))
   }
 
+  traitData <- sortTraitData(traitData)
+  traitData <- cleanEmptyBlocks(traitData, traitName)
+  traitData <- cleanEmptyReps(traitData, traitName)
+
   return(traitData)
 }
+
+
 
