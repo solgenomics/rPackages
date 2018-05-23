@@ -1,13 +1,15 @@
 Package: genoDataFilter
 Type: Package
 Title: Filters Genotype Dataset
-Version: 0.1.21
-Date: 27-03-2017
+Version: 0.1.22
+Date: 23-05-2018
 Author: Isaak Y Tecle
 Maintainer: Isaak Y Tecle <iyt2@cornell.edu>
 Description: Filters genotype dataset for monomorphic markers, markers with minimum allele frequency (MAF) (e.g., < 5%), markers and accessions with missing values above given fraction.
 License: GPL-3
 Encoding: UTF-8
 LazyData: TRUE
-Imports: data.table (>= 1.10.4)
+Imports: data.table,
+         stringr,
+         dplyr
 RoxygenNote: 6.0.1
