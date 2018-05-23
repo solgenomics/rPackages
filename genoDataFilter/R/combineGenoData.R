@@ -35,8 +35,7 @@ combineGenoData <- function(allGenoFiles = NULL) {
     popGenoFile <- basename(popGenoFile)
     popId       <- str_extract(popGenoFile, "\\d+")
     popIds      <- c(popIds, popId)
-    trialGenos <- paste0(rownames(genoData), '_', popId)
-    rownames(genoData) <- trialGenos
+
     genoData$trial <- popId
     genoData       <- genoData %>% select(trial, everything())
 
