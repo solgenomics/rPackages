@@ -48,7 +48,9 @@ combineGenoData <- function(allGenoFiles = NULL) {
         print('combining genotype datasets...')
 
         uniqGenoNames <- unique(rownames(combinedGenoPops))
+        sharedGenos   <- intersect(rownames(combinedGenoPops), rownames(genoData))
 
+        message('cnt of shared genotypes btw new dataset and combo dataset', popId, ': ',  length(sharedGenos) )
         message('cnt of genotypes in new dataset ', popId, ': ',  length(rownames(genoData)) )
 
         genoData <- genoData[!(rownames(genoData) %in% uniqGenoNames),]
@@ -59,7 +61,9 @@ combineGenoData <- function(allGenoFiles = NULL) {
           combinedGenoPops <- rbind(combinedGenoPops, genoData)
        } else {
           message('dataset ', popId, ' has no unique genotypes.')
-      }
+       }
+          idxshared <- rownames(combinedGenoPops) %in% sharedGenos
+          combinedGenoPops$trial[idxshared] <- 'Shared'
     }
   }
 
