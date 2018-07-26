@@ -17,10 +17,10 @@ cleanEmptyReps <- function(traitData, traitName=NULL) {
 
     for (rp in unique(traitData$replicate)) {
 
-      traitValues <- subset(traitData, replicate == rp, select=traitName)
+      traitValues <- traitData %>% filter(replicate == rp)
 
-      if (nrow(traitValues) == sum(is.na(traitValues))) {
-        traitData <- traitData[traitData$replicate != rp, ]
+      if (nrow(traitValues) == sum(is.na(traitValues[[traitName]]))) {
+        traitData <<- traitData[traitData$replicate != rp, ]
       }
     }
 

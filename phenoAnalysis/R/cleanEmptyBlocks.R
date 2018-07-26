@@ -17,13 +17,11 @@ cleanEmptyBlocks <- function(traitData, traitName=NULL) {
 
     for (blk in unique(traitData$blockNumber)) {
 
-      traitValues <- subset(traitData, blockNumber == blk, select=traitName)
-
-      if (nrow(traitValues) == sum(is.na(traitValues))) {
-        traitData <- traitData[traitData$blockNumber != blk, ]
+      traitValues <- traitData %>% filter(blockNumber == blk)
+      if (nrow(traitValues) == sum(is.na(traitValues[[traitName]]))) {
+        traitData <<- traitData[traitData$blockNumber != blk, ]
       }
     }
-
   }
 
   return(traitData)
