@@ -11,7 +11,7 @@
 
 getAnovaTable <- function(modelOut, tableType=NULL, traitName=NULL, ...) {
 
-  if (class(modelOut) == 'merModLmerTest') {
+  if (class(modelOut)[1] == 'lmerModLmerTest') {
     anovaTable <- anova(modelOut)
 
     if (is.null(tableType)) {
