@@ -9,7 +9,7 @@ Description: Calculates genotype adjusted means, anova table for a trait.
 License: GPL-3
 Encoding: UTF-8
 Imports: dplyr, 
-         lmerTest >= 3.0.1,
+         lmerTest (>= 3.0.1),
          lsmeans,
          stargazer
 LazyData: true
