@@ -61,7 +61,7 @@ getAdjMeans <- function (trialData, traitName=NULL, genotypeEffectType='fixed') 
 
   }
 
-  if (class(modelOut)[1] == 'merModLmerTest') {
+  if (class(modelOut)[1] == 'lmerModLmerTest' || class(modelOut)[1] == 'merModLmerTest') {
     adjMeans <- structureAdjMeans(modelOut, traitName)
   } else {
     adjMeans <- averageTrait(traitData, traitName)
