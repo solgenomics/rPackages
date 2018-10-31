@@ -9,7 +9,7 @@
 #' @export
 #'
 
-getAdjMeans <- function (trialData=NULL, modelOut=NULL, traitName=NULL, genotypeEffectType='fixed') {
+getAdjMeans <- function (trialData=NULL, traitName=NULL, modelOut=NULL, genotypeEffectType='fixed') {
 
   if (is.null(traitName)) stop('Trait name is missing.')
 
@@ -24,55 +24,7 @@ getAdjMeans <- function (trialData=NULL, modelOut=NULL, traitName=NULL, genotype
   }
 
   if (!is.null(trialData) & is.null(modelOut)) {
-    tr <- grep(traitName, colnames(trialData))
-
-    if (length(tr) == 0) {
-       stop('Can not find ', traitName, ' in the data set.')
-      }
-
-     #genotypeEffectType <<- genotypeEffectType
-      traitData          <- structureTraitData(trialData, traitName=traitName)
-      adjMeans           <- c()
-
-    experimentalDesign <- trialData[2, 'studyDesign']
-    if (is.na(experimentalDesign) == TRUE) experimentalDesign <- c('No Design')
-
-    if (experimentalDesign == 'RCBD'
-        &&  length(unique(traitData$blockNumber)) > 1) {
-
-        if (genotypeEffectType == 'fixed') {
-          modelOut <- fixedRCBD(traitData, traitName)
-        } else {
-          modelOut <- randomRCBD(traitData, traitName)
-        }
-
-    } else if (experimentalDesign == 'Augmented'
-             &&  length(unique(traitData$blockNumber)) > 1) {
-
-      if (genotypeEffectType == 'fixed') {
-          modelOut <- fixedAugmentedRCBD(traitData, traitName)
-      } else {
-          modelOut <- randomAugmentedRCBD(traitData, traitName)
-      }
-
-    }  else if ((experimentalDesign == 'CRD')
-              &&  length(unique(traitData$replicate)) > 1) {
-
-      if (genotypeEffectType == 'fixed') {
-          modelOut <- fixedCRD(traitData, traitName)
-      } else {
-          modelOut <- randomCRD(traitData, traitName)
-      }
-
-    } else if (experimentalDesign == 'Alpha') {
-
-      if (genotypeEffectType == 'fixed') {
-         modelOut <- fixedAlpha(traitData, traitName)
-      } else {
-        modelOut <- randomAlpha(traitData, traitName)
-     }
-
-    }
+      modelOut <- runAnova(trialData, traitName=traitName, genotypeEffectType=genotypeEffectType)
   }
 
   if (class(modelOut)[1] == 'lmerModLmerTest' || class(modelOut)[1] == 'merModLmerTest') {
