@@ -7,7 +7,7 @@
 #' @export
 #'
 
-structureAdjMeans <- function(modelOut, traitName) {
+structureAdjMeans <- function(modelOut, traitName, genotypeEffectType='fixed') {
 
   if (genotypeEffectType == 'fixed') {
     genolsmean     <- lsmeans(modelOut, 'genotypes')
