@@ -30,7 +30,7 @@ getAdjMeans <- function (trialData=NULL, traitName=NULL, modelOut=NULL, genotype
   if (class(modelOut)[1] == 'lmerModLmerTest' || class(modelOut)[1] == 'merModLmerTest') {
     adjMeans <- structureAdjMeans(modelOut, traitName, genotypeEffectType=genotypeEffectType)
   } else {
-    adjMeans <- averageTrait(traitData, traitName)
+    adjMeans <- averageTrait(trialData, traitName)
   }
 
   return (adjMeans)
