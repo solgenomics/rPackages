@@ -31,4 +31,9 @@ mergeVariables <- function(dataFiles=NULL, ...) {
       }
   }
       combinedData <- data.frame(combinedData)
+      if (length(combinedData$V1) > 1) {
+          combinedData <- column_to_rownames(combinedData, 'V1')
+      }
+
+      return(combinedData)
 }
