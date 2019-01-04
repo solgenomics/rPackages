@@ -1,7 +1,7 @@
 Package: phenoAnalysis
 Type: Package
 Title: Phenotype Data Analysis 
-Version: 0.1.7.0
+Version: 0.1.7.1
 Author: Isaak Y Tecle <iyt2@cornell.edu>
 Maintainer: Isaak Y Tecle <iyt2@cornell.edu>
 Description: Calculates genotype adjusted means, anova table for a trait. 

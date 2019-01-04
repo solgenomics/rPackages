@@ -10,11 +10,11 @@
 mergeVariables <- function(dataFiles=NULL, ...) {
 
   if (is.null(dataFiles)) {
-    stop('Expected a vector of files, but found none.')
+    stop('Expected a vector of data files, but found none.')
   }
 
   if (length(dataFiles) == 1) {
-    warning('There is one data file. Therefore, returning variables from that file only.')
+    warning('There is only one data file. Therefore, returning variables from that file only.')
   }
 
   cnt <- 0
