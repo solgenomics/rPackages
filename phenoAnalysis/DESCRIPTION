@@ -1,7 +1,7 @@
 Package: phenoAnalysis
 Type: Package
 Title: Phenotype Data Analysis 
-Version: 0.1.6.5
+Version: 0.1.7.2
 Author: Isaak Y Tecle <iyt2@cornell.edu>
 Maintainer: Isaak Y Tecle <iyt2@cornell.edu>
 Description: Calculates genotype adjusted means, anova table for a trait. 
@@ -9,8 +9,10 @@ Description: Calculates genotype adjusted means, anova table for a trait.
 License: GPL-3
 Encoding: UTF-8
 Imports: dplyr, 
+         data.table,
          lmerTest (>= 3.0.1),
          lsmeans,
-         stargazer
+         stargazer,
+         tibble
 LazyData: true
 RoxygenNote: 6.0.1
