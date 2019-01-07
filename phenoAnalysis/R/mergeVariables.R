@@ -29,11 +29,13 @@ mergeVariables <- function(dataFiles=NULL, ...) {
       } else {
         combinedData <- full_join(newData, combinedData, ...)
       }
-  }
-      combinedData <- data.frame(combinedData)
+    }
+
       if (length(combinedData$V1) > 1) {
           combinedData <- column_to_rownames(combinedData, 'V1')
       }
+
+      combinedData <- data.frame(combinedData)
 
       return(combinedData)
 }
