@@ -19,7 +19,7 @@ cleanMetaCols(metaDataFile = NULL, phenoData = NULL, phenoFile = NULL,
 \item{keepMetaCols}{a vector of meta columns to keep in the data set.}
 }
 \value{
-a data frame of the phenotype dataset with the germplasmName, trait columns, and meta columns exempt from removal.
+a data frame of the phenotype dataset with trait columns, and meta columns exempt from removal.
 }
 \description{
 Given a dataset with the BrAPI style column naming, removes meta data columns from the phenotype data.

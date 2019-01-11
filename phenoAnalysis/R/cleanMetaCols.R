@@ -7,7 +7,7 @@
 #' @param keepMetaCols a vector of meta columns to keep in the data set.
 #' @param phenoData a data frame of the phenotype dataset
 #' @param phenoFile a name of the file with the phenotype dataset
-#' @return a data frame of the phenotype dataset with the germplasmName, trait columns, and meta columns exempt from removal.
+#' @return a data frame of the phenotype dataset with trait columns, and meta columns exempt from removal.
 #' @export
 #'
 cleanMetaCols <- function(metaDataFile=NULL, phenoData=NULL, phenoFile=NULL,metaData=NULL,keepMetaCols=NULL) {
@@ -21,18 +21,18 @@ cleanMetaCols <- function(metaDataFile=NULL, phenoData=NULL, phenoFile=NULL,meta
   }
 
   if (is.null(phenoData) & !is.null(phenoFile)) {
-    phenoData <- data.frame(fread(phenoFile, sep="\t", na.strings = c("NA", " ", "--", "-", ".", "..")))
+    phenoData <- data.frame(fread(phenoFile,
+                                  sep="\t",
+                                  na.strings = c("NA", " ", "--", "-", ".", "..")))
   }
 
   if(!is.null(metaDataFile)) {
-    metaData <- scan(metadataFile, what="character")
+    metaData <- scan(metaDataFile, what="character")
   }
 
-  allNames <- names(phenoData)
-
-  allTraitNames <- allNames[! allNames %in% nonTraitNames]
-  selectCols <- c(keepMetaCols, allTraitNames)
-
-  phenoData <- phenoData %>% select_(selectCols)
+  allCols    <- names(phenoData)
+  traitNames <- allCols[! allCols %in% metaData]
+  selectCols <- c(keepMetaCols, traitNames)
+  phenoData  <- phenoData %>% select_(.dots=selectCols)
 
 }
