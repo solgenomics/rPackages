@@ -4,15 +4,15 @@
 \alias{getAdjMeans}
 \title{calculates the genotype adjusted means for a trait.}
 \usage{
-getAdjMeans(trialData = NULL, modelOut = NULL, traitName = NULL,
+getAdjMeans(trialData = NULL, traitName = NULL, modelOut = NULL,
   genotypeEffectType = "fixed")
 }
 \arguments{
 \item{trialData}{a dataframe of the trial dataset, of the BrAPI structure and naming convention. This argument is required if the modelOut argument is null.}
 
-\item{modelOut}{a lmerModLmerTest or merModLmerTest class anova model output. This argument is required if the trialData argument is null.}
-
 \item{traitName}{a character vector of the trait name of interest in the dataset.}
+
+\item{modelOut}{a lmerModLmerTest or merModLmerTest class anova model output. This argument is required if the trialData argument is null.}
 
 \item{genotypeEffectType}{a character vector indicating the genotype effect type. By default, genotypes variable is considered fixed effects.}
 }

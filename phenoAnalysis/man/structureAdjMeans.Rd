@@ -4,7 +4,7 @@
 \alias{structureAdjMeans}
 \title{calculates the genotype adjusted means for a trait.}
 \usage{
-structureAdjMeans(modelOut, traitName)
+structureAdjMeans(modelOut, traitName, genotypeEffectType = "fixed")
 }
 \arguments{
 \item{modelOut}{a lmer model output.}

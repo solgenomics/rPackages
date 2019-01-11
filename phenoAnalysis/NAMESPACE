@@ -3,6 +3,7 @@
 export(averageTrait)
 export(cleanEmptyBlocks)
 export(cleanEmptyReps)
+export(cleanMetaCols)
 export(fixedAlpha)
 export(fixedAugmentedRCBD)
 export(fixedCRD)
