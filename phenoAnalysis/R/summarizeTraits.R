@@ -16,23 +16,6 @@ summarizeTraits <- function(phenoData=NULL, groupBy=c('germplasmName'), summaryS
 
   allCols <- names(phenoData)
   traitCols <- allCols[! allCols %in% groupBy]
-  naTraits <- c()
-
-  # for (i in traitCols) {
-  #   if (class(phenoData[, i]) != 'numeric') {
-  #       phenoData[, i] <- as.numeric(as.character(phenoData[, i]))
-  #   }
-  #
-  #   if (all(is.nan(phenoData[, i]))) {
-  #       phenoData[, i] <- sapply(phenoData[, i], function(x) ifelse(is.numeric(x), x, NA))
-  #   }
-  #
-  #   if (sum(is.na(phenoData[,i])) > (0.5 * nrow(phenoData))) {
-  #       phenoData$i <- NULL
-  #       naTraits <- c(naTraits, i)
-  #       message('dropped trait ', i, ' no of missing values: ', sum(is.na(phenoData[,i])))
-  #   }
-  # }
 
   summaryData <- phenoData %>%
                  group_by_(.dots=groupBy) %>%
