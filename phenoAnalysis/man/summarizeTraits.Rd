@@ -4,11 +4,14 @@
 \alias{summarizeTraits}
 \title{groups by given factor and calculates summary data}
 \usage{
-summarizeTraits(phenoData = NULL, groupBy = c("germplasmName"),
-  summaryStat = c("mean"))
+summarizeTraits(phenoData = NULL, traits = NULL,
+  groupBy = c("germplasmName"), summaryStat = c("mean"))
 }
 \arguments{
 \item{phenoData}{a data frame of the phenotype dataset}
+
+\item{traits}{a character vector of traits summary to calculate for.
+If not given, summary will be calculated for all traits in the data set.}
 
 \item{groupBy}{a vector of the columns to group by, defaults to germplasmName.}
 
