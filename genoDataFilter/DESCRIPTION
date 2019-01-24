@@ -1,7 +1,7 @@
 Package: genoDataFilter
 Type: Package
 Title: Filters Genotype Dataset
-Version: 0.1.22
+Version: 0.1.23
 Date: 23-05-2018
 Author: Isaak Y Tecle
 Maintainer: Isaak Y Tecle <iyt2@cornell.edu>
@@ -11,5 +11,6 @@ Encoding: UTF-8
 LazyData: TRUE
 Imports: data.table,
          stringr,
-         dplyr
+         dplyr,
+         tibble
 RoxygenNote: 6.0.1

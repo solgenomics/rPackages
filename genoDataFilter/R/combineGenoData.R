@@ -5,8 +5,6 @@
 #' @param allGenoFiles A vector of the genotype data files. Genotype data file name must have a numeric trial id. e.g. file: genotype_data_141.txt.
 #
 #' @return a data.frame of the combined genotype data, with an additional column ('trial') indicating population origin of the individual.
-#' @import stringr
-#'         dplyr
 #' @export
 #'
 #'
