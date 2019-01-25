@@ -1,10 +1,11 @@
 Package: phenoAnalysis
 Type: Package
 Title: Phenotype Data Analysis 
-Version: 0.1.9.1
+Version: 0.2
+Date: 25-01-2019
 Author: Isaak Y Tecle <iyt2@cornell.edu>
 Maintainer: Isaak Y Tecle <iyt2@cornell.edu>
-Description: Calculates genotype adjusted means, anova table for a trait. 
+Description: Calculates genotype adjusted means, anova table for a trait and more. 
              Relies on data structure of the BrAPI type.
 License: GPL-3
 Encoding: UTF-8
