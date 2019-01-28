@@ -55,7 +55,7 @@ combinePhenoData <- function(phenoFiles = NULL,
       } else {
 
         if (!is.null(phenoData)) {
-          if (isFALSE(keepAllTraits)) {
+          if (!isTRUE(keepAllTraits)) {
               commonTraits <- intersect(commonTraits, traitNames)
               selectCols   <- c(keepMetaCols, commonTraits)
 
