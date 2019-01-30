@@ -10,7 +10,11 @@
 #' @return a data frame of the phenotype dataset with trait columns, and meta columns exempt from removal.
 #' @export
 #'
-cleanMetaCols <- function(metaDataFile=NULL, phenoData=NULL, phenoFile=NULL,metaData=NULL,keepMetaCols=NULL) {
+cleanMetaCols <- function(metaDataFile=NULL,
+                          phenoData=NULL,
+                          phenoFile=NULL,
+                          metaData=NULL,
+                          keepMetaCols=NULL) {
 
   if (is.null(metaData) & is.null(metaDataFile)) {
   stop('Got no meta columns to remove from the data set. ')
