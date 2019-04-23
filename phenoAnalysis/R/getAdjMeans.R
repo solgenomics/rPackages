@@ -9,7 +9,11 @@
 #' @export
 #'
 
-getAdjMeans <- function (trialData=NULL, traitName=NULL, modelOut=NULL, genotypeEffectType='fixed') {
+getAdjMeans <- function (trialData=NULL,
+                         traitName=NULL,
+                         modelOut=NULL,
+                         genotypeEffectType='fixed',
+                         adjMeansVariable='germplasmName') {
 
   if (is.null(traitName)) stop('Trait name is missing.')
 
@@ -28,9 +32,14 @@ getAdjMeans <- function (trialData=NULL, traitName=NULL, modelOut=NULL, genotype
   }
 
   if (class(modelOut)[1] == 'lmerModLmerTest' || class(modelOut)[1] == 'merModLmerTest') {
-    adjMeans <- structureAdjMeans(modelOut, traitName, genotypeEffectType=genotypeEffectType)
+    adjMeans <- structureAdjMeans(modelOut,
+                                  traitName,
+                                  genotypeEffectType=genotypeEffectType,
+                                  adjMeansVariable=adjMeansVariable)
   } else {
-    adjMeans <- averageTrait(trialData, traitName)
+    adjMeans <- averageTrait(trialData,
+                             traitName,
+                             meansVariable=adjMeansVariable)
   }
 
   return (adjMeans)

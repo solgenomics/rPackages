@@ -35,10 +35,10 @@ randomAugmentedRCBD <- function (traitData, traitName) {
 #' @rdname models
 fixedCRD <- function(traitData, traitName) {
 
-  colnames(traitData)[1] <- "genotypes"
+  colnames(traitData)[1] <- "germplasmName"
   colnames(traitData)[which(names(traitData)==traitName)] <- "trait"
 
-  modelOut <- try(lmer(trait ~ genotypes + (1|replicate),
+  modelOut <- try(lmer(trait ~ germplasmName + (1|replicate),
                        traitData,
                        na.action = na.omit))
 
@@ -55,11 +55,10 @@ fixedCRD <- function(traitData, traitName) {
 #' @rdname models
 randomCRD <- function(traitData, traitName) {
 
-  print('doing random effects')
-  colnames(traitData)[1] <- "genotypes"
+  colnames(traitData)[1] <- "germplasmName"
   colnames(traitData)[which(names(traitData)==traitName)] <- "trait"
 
-  modelOut <- try(lmer(trait ~ (1|genotypes) + (1|replicate),
+  modelOut <- try(lmer(trait ~ (1|germplasmName) + (1|replicate),
                        traitData,
                        na.action = na.omit))
 
@@ -76,10 +75,10 @@ randomCRD <- function(traitData, traitName) {
 #' @rdname models
 fixedAlpha <- function(traitData, traitName) {
 
-  colnames(traitData)[1] <- "genotypes"
+  colnames(traitData)[1] <- "germplasmName"
   colnames(traitData)[which(names(traitData)==traitName)] <- "trait"
 
-  modelOut <- try(lmer(trait ~ genotypes + (1|replicate/blockNumber),
+  modelOut <- try(lmer(trait ~ germplasmName + (1|replicate/blockNumber),
                        traitData,
                        na.action = na.omit))
 
@@ -96,10 +95,10 @@ fixedAlpha <- function(traitData, traitName) {
 #' @rdname models
 randomAlpha <- function(traitData, traitName) {
 
-  colnames(traitData)[1] <- "genotypes"
+  colnames(traitData)[1] <- "germplasmName"
   colnames(traitData)[which(names(traitData)==traitName)] <- "trait"
 
-  modelOut <- try(lmer(trait ~ (1|genotypes) + (1|replicate/blockNumber),
+  modelOut <- try(lmer(trait ~ (1|germplasmName) + (1|replicate/blockNumber),
                        traitData,
                        na.action = na.omit))
 
@@ -116,10 +115,10 @@ randomAlpha <- function(traitData, traitName) {
 #' @rdname models
 fixedRCBD <- function (traitData, traitName) {
 
-  colnames(traitData)[1] <- "genotypes"
+  colnames(traitData)[1] <- "germplasmName"
   colnames(traitData)[which(names(traitData)==traitName)] <- "trait"
 
-  modelOut <- try(lmer(trait ~ genotypes + (1|blockNumber),
+  modelOut <- try(lmer(trait ~ germplasmName + (1|blockNumber),
                        traitData,
                        na.action = na.omit))
 
@@ -136,10 +135,10 @@ fixedRCBD <- function (traitData, traitName) {
 #' @rdname models
 randomRCBD <- function (traitData, traitName) {
 
-  colnames(traitData)[1] <- "genotypes"
+  colnames(traitData)[1] <- "germplasmName"
   colnames(traitData)[which(names(traitData)==traitName)] <- "trait"
 
-  modelOut <- try(lmer(trait ~ (1|genotypes) + (1|blockNumber),
+  modelOut <- try(lmer(trait ~ (1|germplasmName) + (1|blockNumber),
                        traitData,
                        na.action = na.omit))
 
