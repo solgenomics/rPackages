@@ -4,7 +4,8 @@
 #' @param trialData a dataframe of the trial dataset, of the BrAPI structure and naming convention. This argument is required if the modelOut argument is null.
 #' @param modelOut a lmerModLmerTest or merModLmerTest class anova model output. This argument is required if the trialData argument is null.
 #' @param traitName a character vector of the trait name of interest in the dataset.
-#' @param genotypeEffectType a character vector indicating the genotype effect type. By default, genotypes variable is considered fixed effects.
+#' @param genotypeEffectType a character vector indicating the genotype effect type. By default, germplasmName variable is considered fixed effects.
+#' @param adjMeansVariable name of the variable adjusted means to calculate for, the default is germplasmName.
 #' @return a dataframe of the adjusted means for the genotypes.
 #' @export
 #'
