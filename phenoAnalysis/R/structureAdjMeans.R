@@ -3,16 +3,20 @@
 #'calculates the genotype adjusted means for a trait.
 #' @param modelOut a lmer model output.
 #' @param traitName a character vector or string of the trait name of interest in the dataset.
+#' @param adjMeansVariable name of the variable adjusted means to calculate for, the default is germplasmName.
 #' @return a dataframe of the adjusted means for the genotypes.
 #' @export
 #'
 
-structureAdjMeans <- function(modelOut, traitName, genotypeEffectType='fixed') {
+structureAdjMeans <- function(modelOut,
+                              traitName,
+                              genotypeEffectType='fixed',
+                              adjMeansVariable='germplasmName') {
 
   if (genotypeEffectType == 'fixed') {
-    genolsmean     <- lsmeans(modelOut, 'genotypes')
+    genolsmean     <- lsmeans(modelOut, adjMeansVariable)
     genolsmeanSumm <- summary(genolsmean)
-    genoMeans      <- genolsmeanSumm[c('genotypes', 'lsmean')]
+    genoMeans      <- genolsmeanSumm[c(adjMeansVariable, 'lsmean')]
 
     genoMeans$lsmean    <- round(genoMeans$lsmean, 2)
     names(genoMeans)[2] <- traitName
@@ -21,19 +25,20 @@ structureAdjMeans <- function(modelOut, traitName, genotypeEffectType='fixed') {
     return(genoMeans)
   } else {
 
-    genoBlups <- ranef(modelOut)$genotypes
-    names(genoBlups) <- traitName
-    genoBlups$genotypes <- rownames(genoBlups)
-    genoBlups <- genoBlups[, c(2, 1)]
+    blups <- ranef(modelOut)
+    blups <- blups[[adjMeansVariable]]
+    names(blups) <- traitName
 
-    sumFormula <- paste0(traitName, ' + ', fixef(modelOut))
-    colMeansName  <- traitName
-    genoMeans <- genoBlups %>% mutate_(.dots = setNames(sumFormula, colMeansName))
+    blups <- rownames_to_column(blups, adjMeansVariable)
 
-    roundMeans <- paste0('round(', traitName, ' ,2)')
-    genoMeans  <- genoMeans %>% mutate_(.dots = setNames(roundMeans, colMeansName))
+    sumFormula <- paste0(traitName, " + ", fixef(modelOut))
 
-    return(genoMeans)
+    adjMeans <- blups %>% mutate_(.dots = setNames(sumFormula, traitName))
+
+    roundMeans <- paste0('round(', traitName, ' ,5)')
+    adjMeans  <- adjMeans %>% mutate_(.dots = setNames(roundMeans, traitName))
+
+    return(adjMeans)
   }
 
 }

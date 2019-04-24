@@ -4,13 +4,17 @@
 #' @param traitData a data frame of the data set
 #' @param traitName a character vector or string of the trait name of interest in the dataset.
 #' @return a dataframe of genotypes mean trait values.
+#' @param meansVariable name of the variable averages to calculate for, the default is germplasmName.
 #' @export
 #'
 
-averageTrait <- function(traitData, traitName) {
+averageTrait <- function(traitData,
+                         traitName,
+                         meansVariable='germplasmName') {
+
   warning('This is just arthemetic average of the trait.')
 
-  traitData <- traitData[, c('germplasmName', traitName)]
+  traitData <- traitData[, c(meansVariable, traitName)]
 
   if (sum(is.na(traitData)) > 0) {
     traitData <- na.omit(traitData)
@@ -23,11 +27,11 @@ averageTrait <- function(traitData, traitName) {
   aveCol  <- traitName
 
   traitAverage <- traitData %>%
-    group_by(germplasmName) %>%
+    group_by_(meansVariable) %>%
     summarise_(.dots = setNames(calMean, aveCol))
 
   traitAverage <- data.frame(traitAverage)
-  colnames(traitAverage)[1] <- 'genotypes'
+  #colnames(traitAverage)[1] <- 'genotypes'
 
   return(traitAverage)
 

@@ -4,7 +4,7 @@
 \alias{averageTrait}
 \title{calculates average trait values for genotypes}
 \usage{
-averageTrait(traitData, traitName)
+averageTrait(traitData, traitName, meansVariable = "germplasmName")
 }
 \arguments{
 \item{traitData}{a data frame of the data set}
