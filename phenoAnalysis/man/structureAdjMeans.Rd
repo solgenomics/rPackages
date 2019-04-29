@@ -11,6 +11,8 @@ structureAdjMeans(modelOut, traitName, genotypeEffectType = "fixed",
 \item{modelOut}{a lmer model output.}
 
 \item{traitName}{a character vector or string of the trait name of interest in the dataset.}
+
+\item{adjMeansVariable}{name of the variable adjusted means to calculate for, the default is germplasmName.}
 }
 \value{
 a dataframe of the adjusted means for the genotypes.
