@@ -6,7 +6,7 @@
 #' @param traitName a character vector of the trait name of interest in the dataset.
 #' @param genotypeEffectType a character vector indicating the genotype effect type. By default, germplasmName variable is considered fixed effects.
 #' @param adjMeansVariable name of the variable adjusted means to calculate for, the default is germplasmName.
-#' @param calcAverages logical. Defaults to FLASE. If TRUE, returns the trait averages, if models fails and can't calculate BLUEs or BLUPs.
+#' @param calcAverages logical. Defaults to FALSE. If TRUE, returns the trait averages, if modeling fails and can't calculate BLUEs or BLUPs.
 #' @return a dataframe of the adjusted means for the genotypes.
 #' @export
 #'
