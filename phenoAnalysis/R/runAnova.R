@@ -21,6 +21,7 @@ runAnova <- function (trialData, traitName=NULL, genotypeEffectType='fixed') {
   modelOut  <- c()
 
   studyDesign <- trialData[2, 'studyDesign']
+
   if (is.na(studyDesign) == TRUE) studyDesign <- c('No Design')
 
   if (studyDesign == 'RCBD'&&  length(unique(traitData$blockNumber)) > 1) {

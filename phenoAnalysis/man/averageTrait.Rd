@@ -10,6 +10,8 @@ averageTrait(traitData, traitName, meansVariable = "germplasmName")
 \item{traitData}{a data frame of the data set}
 
 \item{traitName}{a character vector or string of the trait name of interest in the dataset.}
+
+\item{meansVariable}{name of the variable averages to calculate for, the default is germplasmName.}
 }
 \value{
 a dataframe of genotypes mean trait values.

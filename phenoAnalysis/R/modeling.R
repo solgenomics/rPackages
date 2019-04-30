@@ -45,7 +45,7 @@ fixedCRD <- function(traitData, traitName) {
   if (class(modelOut) != "try-error") {
     return(modelOut)
   } else {
-    stop('Encountered fitting the model.')
+    return(paste0('Encountered error fitting the model: ', modelOut))
   }
 
 }
@@ -65,7 +65,7 @@ randomCRD <- function(traitData, traitName) {
   if (class(modelOut) != "try-error") {
     return(modelOut)
   } else {
-    stop('Encountered fitting the model.')
+    return(paste0('Encountered error fitting the model: ', modelOut))
   }
 
 }
@@ -85,7 +85,7 @@ fixedAlpha <- function(traitData, traitName) {
   if (class(modelOut) != "try-error") {
     return(modelOut)
   } else {
-    stop('Encountered fitting the model.')
+    return(paste0('Encountered error fitting the model: ', modelOut))
   }
 
 }
@@ -105,7 +105,7 @@ randomAlpha <- function(traitData, traitName) {
   if (class(modelOut) != "try-error") {
     return(modelOut)
   } else {
-    stop('Encountered fitting the model.')
+    return(paste0('Encountered error fitting the model: ', modelOut))
   }
 
 }
@@ -125,7 +125,7 @@ fixedRCBD <- function (traitData, traitName) {
   if (class(modelOut) != "try-error") {
     return(modelOut)
   } else {
-    stop('Encountered fitting the model.')
+    return(paste0('Encountered error fitting the model: ', modelOut))
   }
 
 }
@@ -145,7 +145,7 @@ randomRCBD <- function (traitData, traitName) {
   if (class(modelOut) != "try-error") {
     return(modelOut)
   } else {
-    stop('Encountered fitting the model.')
+    return(paste0('Encountered error fitting the model: ', modelOut))
   }
 
 }
