@@ -15,6 +15,7 @@ averageTrait <- function(traitData,
   warning('This is just arthemetic average of the trait.')
 
   traitData <- traitData[, c(meansVariable, traitName)]
+  traitData[, traitName] <- as.numeric(as.character(traitData[, traitName]))
 
   if (sum(is.na(traitData)) > 0) {
     traitData <- na.omit(traitData)
@@ -22,6 +23,7 @@ averageTrait <- function(traitData,
 
   traitData   <- traitData[order(row.names(traitData)), ]
   traitData   <- data.frame(traitData)
+
 
   calMean <- paste0('mean(', traitName, ', na.rm=TRUE)')
   aveCol  <- traitName
