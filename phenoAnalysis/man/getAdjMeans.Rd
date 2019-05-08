@@ -19,7 +19,7 @@ getAdjMeans(trialData = NULL, traitName = NULL, modelOut = NULL,
 
 \item{adjMeansVariable}{name of the variable adjusted means to calculate for, the default is germplasmName.}
 
-\item{calcAverages}{logical. Defaults to FLASE. If TRUE, returns the trait averages, if models fails and can't calculate BLUEs or BLUPs.}
+\item{calcAverages}{logical. Defaults to FALSE. If TRUE, returns the trait averages, if modeling fails and can't calculate BLUEs or BLUPs.}
 }
 \value{
 a dataframe of the adjusted means for the genotypes.
