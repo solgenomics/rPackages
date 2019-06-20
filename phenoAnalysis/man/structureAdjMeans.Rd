@@ -4,7 +4,7 @@
 \alias{structureAdjMeans}
 \title{calculates the genotype adjusted means for a trait.}
 \usage{
-structureAdjMeans(modelOut, traitName, genotypeEffectType = "fixed",
+structureAdjMeans(modelOut, traitName = NULL, genotypeEffectType = "fixed",
   adjMeansVariable = "germplasmName")
 }
 \arguments{

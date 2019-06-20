@@ -21,7 +21,7 @@ getAdjMeans <- function (trialData=NULL,
   if (is.null(traitName)) stop('Trait name is missing.')
 
   if (is.null(trialData) & is.null(modelOut)) {
-    stop('You need to provide either trial data or model output.')
+    stop('You need to provide either a trial data or a model (from lmer).')
   }
 
   if (!is.null(trialData) & is.null(modelOut)) {

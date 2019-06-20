@@ -9,7 +9,7 @@
 #'
 
 structureAdjMeans <- function(modelOut,
-                              traitName,
+                              traitName=NULL,
                               genotypeEffectType='fixed',
                               adjMeansVariable='germplasmName') {
 
@@ -25,16 +25,13 @@ structureAdjMeans <- function(modelOut,
     return(genoMeans)
   } else {
 
-    blups <- ranef(modelOut)
+    blups <- lme4::ranef(modelOut)
     blups <- blups[[adjMeansVariable]]
     names(blups) <- traitName
-
     blups <- rownames_to_column(blups, adjMeansVariable)
 
-    sumFormula <- paste0(traitName, " + ", fixef(modelOut))
-
+    sumFormula <- paste0(traitName, " + ", lme4::fixef(modelOut))
     adjMeans <- blups %>% mutate_(.dots = setNames(sumFormula, traitName))
-
     roundMeans <- paste0('round(', traitName, ' ,5)')
     adjMeans  <- adjMeans %>% mutate_(.dots = setNames(roundMeans, traitName))
 
