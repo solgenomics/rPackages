@@ -19,7 +19,7 @@ combinePhenoData <- function(phenoFiles = NULL,
   combinedPhenoData <- c()
   cnt               <- 0
   popIds            <- c()
-  metadata          <- c()
+  metaData          <- c()
   commonTraits      <- c()
 
 
