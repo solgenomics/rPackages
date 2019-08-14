@@ -28,7 +28,7 @@ cleanAveragePhenotypes <- function(inputFiles=NULL,
   if (is.null(metaDataFile))
       stop('Phenotype meta data file is missing.')
 
-  pheno <-  extractPhenotype(inputFiles, metadataFile)
+  pheno <-  extractPhenotype(inputFiles, metaDataFile)
 
   phenoData <- cleanMetaCols(metaDataFile=metaDataFile,
                            phenoData=pheno,
