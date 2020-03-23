@@ -2,6 +2,7 @@
 
 export(calculateMAF)
 export(combineGenoData)
+export(convertToNumeric)
 export(filterGenoData)
 export(roundAlleleDosage)
 import(data.table)
