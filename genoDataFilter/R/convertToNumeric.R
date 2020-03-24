@@ -16,20 +16,24 @@ convertToNumeric <- function(gData) {
   }
 
   origDType <- class(gData)[1]
+  rows <- c()
 
   if (class(gData)[1] == 'data.frame') {
+    rows <- rownames(gData)
     gData <- data.table(gData, keep.rownames = TRUE)
   }
 
-  cols <- colnames(gData)
   toNumeric <- function (x) {
     ifelse(sapply(x, is.numeric), x, as.numeric(x))
   }
 
+  cols <- colnames(gData)
   gData[, (cols) := lapply(.SD, toNumeric)]
 
   if (origDType == 'data.frame') {
     gData <- as.data.frame(gData)
+    rownames(gData) <- rows
+    gData[, 'rn']   <- NULL
   }
 
   return(gData)
