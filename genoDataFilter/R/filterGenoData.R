@@ -19,7 +19,7 @@ filterGenoData <- function (gData=genoDf, maf=0, markerFilter=0.6, indFilter=0.8
 
   origDType <- class(gData)[1]
 
-  if (class(gData)[1] == 'data.frame') {
+  if (origDType == 'data.frame') {
     gData <- data.table(gData, keep.rownames = TRUE)
   }
 
@@ -46,7 +46,8 @@ filterGenoData <- function (gData=genoDf, maf=0, markerFilter=0.6, indFilter=0.8
   message('No. of marker after filtering out < ', maf, ' MAF: ', ncol(gData))
 
   if (origDType == 'data.frame') {
-    gData           <- as.data.frame(gData)
+    gData <- data.frame(gData)
+    gData <- column_to_rownames(gData, 'rn')
   }
 
   return(gData)
