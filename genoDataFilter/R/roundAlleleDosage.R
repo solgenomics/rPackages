@@ -1,15 +1,17 @@
 #' rounds decimals
 #'
-#' A function for rounding decimals in genotype columns to create [0, 1, 2].
+#' A function for rounding a dataset to a desired decimal place
 #'
-#' @param x A data.frame or data.table of the genotype dataset
+#' @param x A data.frame or data.table of the dataset
 #
-#' @return a data.frame or data.table of the genotype dataset with rounded allele dosages.
+#' @param digits an integer, decimal places to round. Defaults to 0.
+#
+#' @return a data.frame or data.table of the genotype dataset with rounded values.
 #'
 #' @export
 #'
 #'
-roundAlleleDosage <- function(gData) {
+roundAlleleDosage <- function(gData, digits=0) {
 
   if (length(grep( "data.frame", class(gData))) < 1) {
     stop('The genotype dataset is not a data.frame or data.table')
@@ -17,19 +19,21 @@ roundAlleleDosage <- function(gData) {
 
   origDType <- class(gData)[1]
 
-  if (class(gData)[1] == 'data.frame') {
+  if (origDType == 'data.frame') {
     gData <- data.table(gData, keep.rownames = TRUE)
   }
 
   cols <- colnames(gData)
   rnd <- function (x) {
-    ifelse(sapply(x, is.numeric), round(x, 0), x)
+    ifelse(sapply(x, is.numeric), round(x, digits), x)
   }
 
   gData[, (cols) := lapply(.SD, rnd)]
 
   if (origDType == 'data.frame') {
-    gData <- as.data.frame(gData)
+    gData <- data.frame(gData)
+    gData <- column_to_rownames(gData, 'rn')
+
   }
 
   return(gData)

@@ -4,14 +4,16 @@
 \alias{roundAlleleDosage}
 \title{rounds decimals}
 \usage{
-roundAlleleDosage(gData)
+roundAlleleDosage(gData, digits = 0)
 }
 \arguments{
-\item{x}{A data.frame or data.table of the genotype dataset}
+\item{digits}{an integer, decimal places to round. Defaults to 0.}
+
+\item{x}{A data.frame or data.table of the dataset}
 }
 \value{
-a data.frame or data.table of the genotype dataset with rounded allele dosages.
+a data.frame or data.table of the genotype dataset with rounded values.
 }
 \description{
-A function for rounding decimals in genotype columns to create [0, 1, 2].
+A function for rounding a dataset to a desired decimal place
 }
