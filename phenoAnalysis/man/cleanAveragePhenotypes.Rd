@@ -4,8 +4,12 @@
 \alias{cleanAveragePhenotypes}
 \title{Reads, cleans and creates phenotype data with averaged individual data points for entries.}
 \usage{
-cleanAveragePhenotypes(inputFiles = NULL, metaDataFile = NULL,
-  keepMetaCols = c("germplasmName"), ...)
+cleanAveragePhenotypes(
+  inputFiles = NULL,
+  metaDataFile = NULL,
+  keepMetaCols = c("germplasmName"),
+  ...
+)
 }
 \arguments{
 \item{metaDataFile}{a file with the meta data columns, tab-delimited. Optional}

@@ -4,9 +4,14 @@
 \alias{getAdjMeans}
 \title{calculates the genotype adjusted means for a trait.}
 \usage{
-getAdjMeans(trialData = NULL, traitName = NULL, modelOut = NULL,
-  genotypeEffectType = "fixed", adjMeansVariable = "germplasmName",
-  calcAverages = FALSE)
+getAdjMeans(
+  trialData = NULL,
+  traitName = NULL,
+  modelOut = NULL,
+  genotypeEffectType = "fixed",
+  adjMeansVariable = "germplasmName",
+  calcAverages = FALSE
+)
 }
 \arguments{
 \item{trialData}{a dataframe of the trial dataset, of the BrAPI structure and naming convention. This argument is required if the modelOut argument is null.}

@@ -4,8 +4,12 @@
 \alias{summarizeTraits}
 \title{groups by given factor and calculates summary data}
 \usage{
-summarizeTraits(phenoData = NULL, traits = NULL,
-  groupBy = c("germplasmName"), summaryStat = c("mean"))
+summarizeTraits(
+  phenoData = NULL,
+  traits = NULL,
+  groupBy = c("germplasmName"),
+  summaryStat = c("mean")
+)
 }
 \arguments{
 \item{phenoData}{a data frame of the phenotype dataset}
