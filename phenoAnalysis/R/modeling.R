@@ -169,3 +169,22 @@ fixedRowCol <- function(traitData, traitName) {
   }
 
 }
+#' @export
+#' @rdname models
+randomRowCol <- function(traitData, traitName) {
+
+  colnames(traitData)[1] <- "germplasmName"
+  colnames(traitData)[which(names(traitData)==traitName)] <- "trait"
+
+  modelOut <- try(lmer(trait ~ (1|germplasmName) + (1|rowNumber) + (1|colNumber),
+                       traitData,
+                       na.action = na.omit))
+
+  if (class(modelOut) != "try-error") {
+    return(modelOut)
+  } else {
+    return(paste0('Encountered error fitting the model: ', modelOut))
+  }
+
+}
+

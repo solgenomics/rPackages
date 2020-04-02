@@ -11,6 +11,7 @@
 \alias{fixedRCBD}
 \alias{randomRCBD}
 \alias{fixedRowCol}
+\alias{randomRowCol}
 \title{fits linear mixed model}
 \usage{
 fixedAugmentedRCBD(traitData, traitName)
@@ -30,6 +31,8 @@ fixedRCBD(traitData, traitName)
 randomRCBD(traitData, traitName)
 
 fixedRowCol(traitData, traitName)
+
+randomRowCol(traitData, traitName)
 }
 \arguments{
 \item{traitData}{a data frame of the trait data}
