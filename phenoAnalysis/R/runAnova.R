@@ -53,6 +53,14 @@ runAnova <- function (trialData, traitName=NULL, genotypeEffectType='fixed') {
       } else {
           modelOut  <- randomAlpha(traitData, traitName)
       }
+  } else if (studyDesign == 'RowColumn') {
+
+    if (genotypeEffectType == 'fixed') {
+      modelOut  <- fixedRowCol(traitData, traitName)
+    } else {
+      modelOut  <- randomRowCol(traitData, traitName)
+    }
+
   } else {
     modelOut <- c("Can't perform ANOVA on this trait. Because, the trial has no proper or supported experimental design for the trait.")
   }
