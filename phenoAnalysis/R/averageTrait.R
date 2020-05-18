@@ -26,7 +26,7 @@ averageTrait <- function(traitData,
 
 
   calMean <- paste0('mean(', traitName, ', na.rm=TRUE)')
-  aveCol  <- traiName
+  aveCol  <- traitName
 
   traitAverage <- traitData %>%
     group_by_(meansVariable) %>%
