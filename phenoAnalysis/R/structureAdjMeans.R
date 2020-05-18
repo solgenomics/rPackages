@@ -19,8 +19,7 @@ structureAdjMeans <- function(modelOut,
     genoMeans      <- genolsmeanSumm[c(adjMeansVariable, 'lsmean')]
 
     genoMeans$lsmean    <- round(genoMeans$lsmean, 2)
-    names(genoMeans)[2] <- traitName
-    genoMeans <- data.frame(genoMeans)
+    names(genoMeans)[2] <- paste0(traitName, '_Adjusted_means_fixed_effects')
 
     return(genoMeans)
   } else {
@@ -34,8 +33,9 @@ structureAdjMeans <- function(modelOut,
     adjMeans <- blups %>% mutate_(.dots = setNames(sumFormula, traitName))
     roundMeans <- paste0('round(', traitName, ' ,5)')
     adjMeans  <- adjMeans %>% mutate_(.dots = setNames(roundMeans, traitName))
+    names(adjMeans)[2] <- paste0(traitName, '_Adjusted_means_random_effects')
 
-    return(adjMeans)
+     return(adjMeans)
   }
 
 }

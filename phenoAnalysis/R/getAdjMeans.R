@@ -35,11 +35,13 @@ getAdjMeans <- function (trialData=NULL,
                                   traitName,
                                   genotypeEffectType=genotypeEffectType,
                                   adjMeansVariable=adjMeansVariable)
+
     return (adjMeans)
   } else if (calcAverages && !is.null(trialData)) {
     adjMeans <- averageTrait(trialData,
                              traitName,
                              meansVariable=adjMeansVariable)
+
     return (adjMeans)
   } else if (calcAverages && is.null(trialData)) {
     return ('ERROR: You need to provide the trial data argument to calculate averages.')

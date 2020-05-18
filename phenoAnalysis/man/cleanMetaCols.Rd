@@ -4,8 +4,13 @@
 \alias{cleanMetaCols}
 \title{Removes meta data columns from the phenotype data}
 \usage{
-cleanMetaCols(metaDataFile = NULL, phenoData = NULL, phenoFile = NULL,
-  metaData = NULL, keepMetaCols = NULL)
+cleanMetaCols(
+  metaDataFile = NULL,
+  phenoData = NULL,
+  phenoFile = NULL,
+  metaData = NULL,
+  keepMetaCols = NULL
+)
 }
 \arguments{
 \item{metaDataFile}{a file with the meta data columns, tab-delimited. Optional}

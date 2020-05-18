@@ -4,8 +4,12 @@
 \alias{combinePhenoData}
 \title{combine phenotype data}
 \usage{
-combinePhenoData(phenoFiles = NULL, metaDataFile = NULL,
-  keepMetaCols = NULL, keepAllTraits = FALSE)
+combinePhenoData(
+  phenoFiles = NULL,
+  metaDataFile = NULL,
+  keepMetaCols = NULL,
+  keepAllTraits = FALSE
+)
 }
 \arguments{
 \item{phenoFiles}{A vector of the phenotype data files. Phenotype data file name must have a numeric trial id. e.g. file: phenotype_data_141.txt.}
