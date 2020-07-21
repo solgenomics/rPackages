@@ -4,7 +4,9 @@
 \name{rawGenoData}
 \alias{rawGenoData}
 \title{Sample genotype dataset}
-\format{data.frame}
+\format{
+data.frame
+}
 \usage{
 rawGenoData
 }
