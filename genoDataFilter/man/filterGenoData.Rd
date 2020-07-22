@@ -4,8 +4,7 @@
 \alias{filterGenoData}
 \title{filters genotype dataset}
 \usage{
-filterGenoData(gData = genoDf, maf = 0, markerFilter = 0.6,
-  indFilter = 0.8)
+filterGenoData(gData = genoDf, maf = 0, markerFilter = 0.6, indFilter = 0.8)
 }
 \arguments{
 \item{gData}{A data.frame or data.table of the genotype dataset}
