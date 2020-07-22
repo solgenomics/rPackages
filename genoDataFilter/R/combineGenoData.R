@@ -25,18 +25,14 @@ combineGenoData <- function(allGenoFiles = NULL) {
                      na.strings = c("NA", " ", "--", "-"))
 
     genoData <- data.frame(genoData)
-    #message('cnt of genotypes in dataset: ', length(rownames(genoData)))
     genoData <- genoData[!duplicated(genoData[,'V1']), ]
-    #message('cnt of unique genotypes in dataset: ', length(rownames(genoData)))
-    rownames(genoData) <- genoData[, 1]
-    genoData[, 1] <- NULL
+    genoData <- rename(genoData, genotypes='V1')
 
     popGenoFile <- basename(popGenoFile)
     popId       <- str_extract(popGenoFile, "\\d+")
     popIds      <- c(popIds, popId)
 
     genoData$trial <- popId
-    genoData <- rownames_to_column(genoData, var='genotypes')
     genoData <- genoData %>% select(genotypes, trial, everything())
 
     if (cnt == 1 ) {
@@ -45,22 +41,16 @@ combineGenoData <- function(allGenoFiles = NULL) {
         comboGenoMetaData <- genoMetaData
      } else {
 
-       genoMetaData <- subset(genoData, select=c('genotypes', 'trial'))
-
+       genoMetaData <- genoData %>% select(genotypes, trial)
        comboGenoMetaData <- full_join(comboGenoMetaData, genoMetaData, by="genotypes")
 
-        uniqGenoNames <- unique(rownames(combinedGenoPops))
-
-        #message('cnt of genotypes in new dataset ', popId, ': ',  length(rownames(genoData)) )
-
-        genoData <- genoData[!(rownames(genoData) %in% uniqGenoNames),]
-
-        #message('cnt of unique genotypes from new dataset ', popId, ': ', length(rownames(genoData)))
+       uniqGenoNames <- unique(rownames(combinedGenoPops))
+       genoData <- genoData[!(rownames(genoData) %in% uniqGenoNames),]
 
       if (!is.null(genoData)) {
           combinedGenoPops <- rbind(combinedGenoPops, genoData)
        } else {
-         # message('dataset ', popId, ' has no unique genotypes.')
+         message('dataset ', popId, ' has no unique genotypes.')
       }
     }
   }
@@ -89,6 +79,8 @@ combineGenoData <- function(allGenoFiles = NULL) {
                          select(genotypes, tr_gr, everything()) %>%
                          select(-trial) %>%
                          rename(trial = tr_gr)
+
+  combinedGenoPops <- column_to_rownames(combinedGenoPops, var='genotypes')
 
   #combinedGenoPops <- combinedGenoPops[order(rownames(combinedGenoPops)), ]
   return(combinedGenoPops)
