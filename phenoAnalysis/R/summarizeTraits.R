@@ -26,9 +26,10 @@ summarizeTraits <- function(phenoData=NULL,
     traitCols <- allCols[! allCols %in% groupBy]
   }
 
+  phenoData   <- phenoData[which(rowSums(is.na(phenoData)) != length(traitCols) ), ]
   summaryData <- phenoData %>%
                  group_by_(.dots=groupBy) %>%
                  summarise_at(traitCols, summaryStat, na.rm=TRUE) %>%
-                 data.frame
+                 select(which(colSums(is.na(.)) == 0))
 
 }
