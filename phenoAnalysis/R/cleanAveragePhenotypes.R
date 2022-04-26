@@ -35,6 +35,6 @@ cleanAveragePhenotypes <- function(inputFiles=NULL,
 
       phenoData <- summarizeTraits(phenoData)
       phenoData <- column_to_rownames(phenoData, 'germplasmName')
-      phenoData <- round(phenoData, 2)
+      phenoData <- data.frame(round(phenoData, 2))
 
 }
