@@ -35,10 +35,7 @@ combinePhenoData <- function(phenoFiles = NULL,
   for (phenoFile in phenoFiles) {
       cnt <- cnt + 1
 
-      phenoData <- fread(phenoFile,
-                        sep="\t",
-                        stringsAsFactors = FALSE,
-                        na.strings = c("NA", " ", "--", "-"))
+      phenoData <- getDataFrame(phenoFile)
 
       trialId <- unique(phenoData$studyDbId)
 
@@ -70,6 +67,7 @@ combinePhenoData <- function(phenoFiles = NULL,
           }
 
          combinedPhenoData <- bind_rows(combinedPhenoData, phenoData)
+
        } else {
             message('dataset ', trialId, ' is empty.')
       }
