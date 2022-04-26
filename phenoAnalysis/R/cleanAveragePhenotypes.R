@@ -21,24 +21,20 @@ cleanAveragePhenotypes <- function(inputFiles=NULL,
                                    metaDataFile=NULL,
                                    keepMetaCols=c('germplasmName'),
                                    ...) {
-#metaFile <- grep("meta", inputFiles,  value = TRUE)
+
   if (is.null(inputFiles))
       stop('Phenotype data file is missing.')
 
   if (is.null(metaDataFile))
       stop('Phenotype meta data file is missing.')
 
-  pheno <-  extractPhenotype(inputFiles, metaDataFile)
+      pheno <-  extractPhenotype(inputFiles, metaDataFile)
+      phenoData <- cleanMetaCols(metaDataFile=metaDataFile,
+                               phenoData=pheno,
+                               keepMetaCols=keepMetaCols)
 
-  phenoData <- cleanMetaCols(metaDataFile=metaDataFile,
-                           phenoData=pheno,
-                           keepMetaCols=keepMetaCols)
-
-  phenoData <- summarizeTraits(phenoData)
-
-#phenoNa   <- phenoData %>% filter_all(any_vars(is.na(.)))
-  phenoData <- column_to_rownames(phenoData, 'germplasmName')
-  phenoData <- round(phenoData, 2)
-  return (phenoData)
+      phenoData <- summarizeTraits(phenoData)
+      phenoData <- column_to_rownames(phenoData, 'germplasmName')
+      phenoData <- round(phenoData, 2)
 
 }
