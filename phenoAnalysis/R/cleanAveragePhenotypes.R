@@ -33,9 +33,13 @@ cleanAveragePhenotypes <- function(inputFiles=NULL,
                                phenoData=pheno,
                                keepMetaCols=keepMetaCols)
 
+      message('summarizing trait data')
       phenoData <- summarizeTraits(phenoData)
+      message('Done summarizing trait data')
       phenoData <- column_to_rownames(phenoData, 'germplasmName')
       phenoData <- data.frame(round(phenoData, 2))
+      message('got trait data frame')
+      message(head(phenoData))
       print(head(phenoData))
       return (phenoData)
 
