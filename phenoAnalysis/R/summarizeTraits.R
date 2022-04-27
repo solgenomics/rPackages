@@ -27,9 +27,13 @@ summarizeTraits <- function(phenoData=NULL,
   }
 
   phenoData   <- phenoData[which(rowSums(is.na(phenoData)) != length(traitCols) ), ]
+  print(head(phenoData))
   summaryData <- phenoData %>%
                  group_by_(.dots=groupBy) %>%
                  summarise_at(traitCols, summaryStat, na.rm=TRUE) %>%
                  select(which(colSums(is.na(.)) == 0))
+  print('head summary data')
+  print(data.frame(head(summaryData)))
 
+  return (summaryData)
 }
