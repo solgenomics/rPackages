@@ -44,9 +44,10 @@ cleanAveragePhenotypes <- function(inputFiles=NULL,
       print('converted germplasm col to row names')
       print(str(phenoData))
       print(head(phenoData))
-      phenoData <- round(phenoData, 2)
-      print('rounded data')
-      print(head(phenoData))
+
+      #phenoData <- round(phenoData, 2)
+      #print('rounded data')
+      #print(head(phenoData))
 
       return (phenoData)
 
