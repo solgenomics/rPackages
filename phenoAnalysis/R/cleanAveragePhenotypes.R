@@ -33,17 +33,8 @@ cleanAveragePhenotypes <- function(inputFiles=NULL,
                                phenoData=pheno,
                                keepMetaCols=keepMetaCols)
 
-      message('summarizing trait data')
-      print(str(phenoData))
       phenoData <- summarizeTraits(phenoData)
-      print('Done summarizing trait data')
-      print(head(phenoData))
-      print(str(phenoData))
-
       phenoData <- column_to_rownames(phenoData, 'germplasmName')
-      print('converted germplasm col to row names')
-      print(str(phenoData))
-      print(head(phenoData))
 
       #phenoData <- round(phenoData, 2)
       #print('rounded data')
