@@ -33,14 +33,18 @@ filterMissingValues <- function(phenoData=NULL,
     traits <- colnames(phenoData)
   }
 
-  if (colMissingFilter > 0) {
-    phenoData <- phenoData %>%
-                 select_if(function(x) sum(is.na(x)) < colMissingFilter * nrow(phenoData))
-  }
+  traits <- traits[!traits %in% c('germplasmName')]
 
   if (rowMissingFilter > 0) {
-     phenoData <- phenoData %>%
-                 filter_at(traits, all_vars(sum(is.na(.)) < rowMissingFilter * ncol(phenoData)))
+    phenoData <- phenoData %>%
+                  mutate(na_count = rowSums(is.na(.))  ) %>%
+                  filter(na_count < rowMissingFilter * length(traits)) %>%
+                  select(-na_count)
+  }
+
+  if (colMissingFilter > 0) {
+    phenoData <- phenoData %>%
+                  select_if(function(x) sum(is.na(x)) < colMissingFilter * nrow(phenoData))
   }
 
   return (phenoData)
