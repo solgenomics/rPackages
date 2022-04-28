@@ -19,18 +19,30 @@ summarizeTraits <- function(phenoData=NULL,
   stop('No dataset given. ')
   }
 
+  phenoData <- filterMissingValues(phenoData, traits=traits)
+  phenoData <- getNumericCols(phenoData, traits=traits)
+
   allCols <- names(phenoData)
+  traitsCols <- c()
   if (!is.null(traits)){
-    traitCols <- traits
+    traitsCols <- traits
   } else {
-    traitCols <- allCols[! allCols %in% groupBy]
+    traitsCols <- allCols[! allCols %in% groupBy]
   }
 
-  phenoData   <- phenoData[which(rowSums(is.na(phenoData)) != length(traitCols) ), ]
+  traitsCols <- intersect(traitsCols, allCols)
+
+  if (!any(grepl('germplasmName', colnames(phenoData)))) {
+    phenoData <- rownames_to_column(phenoData, 'germplasmName')
+
+    if (is.null(groupBy)) {
+      groupBy <- c('germplasmName')
+    }
+  }
 
   summaryData <- phenoData %>%
                  group_by_(.dots=groupBy) %>%
-                 summarise_at(traitCols, summaryStat, na.rm=TRUE) %>%
+                 summarise_at(traitsCols, summaryStat, na.rm=TRUE) %>%
                  select(which(colSums(is.na(.)) == 0))
 
   return (summaryData)
