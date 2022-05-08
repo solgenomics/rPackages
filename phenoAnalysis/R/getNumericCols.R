@@ -6,7 +6,7 @@
 #' @return a data frame of the phenotype dataset with without the non-numeric variables.
 #' @export
 #'
-getNumericCols <- function(phenoData=NULL, exclude=c('germplasmName')) {
+getNumericCols <- function(phenoData=NULL, exception=c('germplasmName')) {
 
   if (is.null(phenoData)) {
     stop('You have not provided a data frame of a dataset or it is an empty data frame.')
@@ -19,7 +19,7 @@ getNumericCols <- function(phenoData=NULL, exclude=c('germplasmName')) {
   phenoData <- data.frame(phenoData)
 
   phenoData <- phenoData %>%
-               select(matches(exclude), names(select_if(., ~is.numeric(.x))))
+               select(matches(exception), names(select_if(., ~is.numeric(.x))))
 
   return (phenoData)
 
