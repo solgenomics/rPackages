@@ -20,13 +20,9 @@ extractPhenotype <- function(inputFiles, metaDataFile, ...) {
                                   ...)
 
   } else {
-    phenoFile <- phenoFiles
-    phenoData <- fread(phenoFile,
-                       sep= "\t",
-                       na.strings = c("NA", " ", "--", "-", "."))
-
-    phenoData <- data.frame(phenoData)
-
+    phenoData <- getDataFrame(phenoFiles)
+    cleanData <- cleanMetaCols(phenoData=phenoData,
+                               metaDataFile=metaDataFile )
     if (is.null(phenoData)) {
       stop("There is no phenotype dataset.")
       q("no", 1, FALSE)
