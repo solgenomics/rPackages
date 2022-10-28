@@ -6,12 +6,13 @@
 #' @param maf Minimum allele frequency (MAF) used to filter out a marker, 0 to 1. By default, no MAF filtering done.
 #' @param markerFilter Fraction of missing values in a marker, 0 to 1. By default, markers with > 60 percent missing values are removed.
 #' @param indFilter Fraction of missing values in an accession/genotype, 0 to 1. By default, accessions with > 80 percent missing marker values are removed.
-#' @return A data.frame or data.table of the cleaned genotype dataset.
+#' @logRetrun logical indicating whether to return a log of the data filtering process. Default is FALSE. 
+#' @return A data.frame or data.table of the cleaned genotype dataset if the logReturn argument is set to FALSE; If TRUE, the function returns a list of the cleaned data and the log.
 #'
 #' @export
 #'
 
-filterGenoData <- function (gData=genoDf, maf=0, markerFilter=0.6, indFilter=0.8) {
+filterGenoData <- function (gData=genoDf, maf=0, markerFilter=0.6, indFilter=0.8, logReturn=FALSE) {
 
   ifelse (missing(gData)==T, stop('You need to provide a genotype data.frame argument'),
   ifelse (is.null(gData)==T, stop('Genotype dataset is null.'),
@@ -24,31 +25,41 @@ filterGenoData <- function (gData=genoDf, maf=0, markerFilter=0.6, indFilter=0.8
   }
 
   #remove markers with missing values
-  message('No of markers before applying any filter: ', ncol(gData))
+  
+  log <- c("No of markers before applying any filter: ", length(names(gData)), "\n")
+
   gData[, which(colSums(is.na(gData)) >= nrow(gData) * markerFilter) := NULL]
-  message('No. of markers after filtering out  >', markerFilter, ' missing: ',  ncol(gData))
+log <- append(log, "No. of markers (columns) remaining after filtering out individuals (rows) missing greater than or equal to " , markerFilter * 100, '%: ',  length(names(gData)), "\n")
 
   #remove indls with missing values
-  message('No. of indls before applying any filter: ', nrow(gData))
+ log <- append(log, "No. of individuals (rows) before applying any filter: ", length(rownames(gData)), "\n")
   gData[, noMissing := apply(.SD, 1, function(x) sum(is.na(x)))]
   gData <- gData[noMissing <= ncol(gData) * indFilter]
   gData[, noMissing := NULL]
-  message('No. of indls after filtering out >', indFilter, ' missing: ',  nrow(gData))
+  
+  log <- append(log, "No. of individuals (rows) remaining after filtering out markers (columns) missing greater than or equal to ", indFilter * 100, '%: ',  length(rownames(gData)), "\n")
 
   #remove monomorphic markers
-  message('No. of marker before applying monomorphic markers filter: ', ncol(gData))
+  log <- append(log, "No. of markers remaining before applying monomorphic markers filter: ", length(names(gData)), "\n")
   gData[, which(apply(gData, 2,  function(x) length(unique(x))) < 2) := NULL ]
-  message('No. of marker after filtering out monomorphic markers: ', ncol(gData))
+  
+  log <- append(log, "No. of marker after filtering out monomorphic markers: ", length(names(gData)), "\n")
 
   #remove markers with MAF
-  message('No of markers before applying MAF filter: ', ncol(gData))
+log <- append( log, "No of markers before applying MAF filter: ", length(names(gData)), "\n")
   gData[, which(apply(gData, 2,  calculateMAF) < maf) := NULL ]
-  message('No. of marker after filtering out < ', maf, ' MAF: ', ncol(gData))
+  
+  log <- append(log, "No. of markers remaining after filtering out ,markers less than or equal to ", maf*100, '% MAF: ', length(names(gData)), "\n")
 
   if (origDType == 'data.frame') {
     gData <- data.frame(gData)
     gData <- column_to_rownames(gData, 'rn')
   }
 
-  return(gData)
+  if (logReturn) {
+    return list("data" <- gData, "log" <- log)
+  } else {
+    return(gData)
+  }
+
 }
