@@ -57,7 +57,7 @@ log <- append( log, "No of markers before applying MAF filter: ", length(names(g
   }
 
   if (logReturn) {
-    return list("data" <- gData, "log" <- log)
+    return (list("data" <- gData, "log" <- log))
   } else {
     return(gData)
   }
