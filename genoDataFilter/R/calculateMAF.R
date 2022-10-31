@@ -1,7 +1,7 @@
 #' calculates minimum allele frequency (MAF)
 #'
 #' A function for calculating minimum allele frequency. Genotype coding needs to be [0, 1, 2].
-#'
+#' @importFrom stats na.omit
 #' @param x A vector of marker allele data
 #
 #' @return minimum allele frequency

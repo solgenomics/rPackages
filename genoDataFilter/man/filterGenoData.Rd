@@ -20,6 +20,8 @@ filterGenoData(
 \item{markerFilter}{Fraction of missing values in a marker, 0 to 1. By default, markers with > 60 percent missing values are removed.}
 
 \item{indFilter}{Fraction of missing values in an accession/genotype, 0 to 1. By default, accessions with > 80 percent missing marker values are removed.}
+
+\item{logReturn}{logical indicating whether to return a log of the data filtering process. Default is FALSE.}
 }
 \value{
 A data.frame or data.table of the cleaned genotype dataset if the logReturn argument is set to FALSE; If TRUE, the function returns a list of the cleaned data and the log.
