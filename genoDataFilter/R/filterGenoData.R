@@ -29,7 +29,7 @@ filterGenoData <- function (gData=genoDf, maf=0, markerFilter=0.6, indFilter=0.8
   log <- paste0("No of markers before applying any filter: ", length(names(gData)), "\n")
 
   gData[, which(colSums(is.na(gData)) >= nrow(gData) * markerFilter) := NULL]
-log <- append(log, paste0("No. of markers (columns) remaining after filtering out ones with", markerFilter * 100, '% or more missing data:',  length(names(gData)), ".\n"))
+log <- append(log, paste0("No. of markers (columns) remaining after filtering out markers with ", markerFilter * 100, '% or more missing data:',  length(names(gData)), ".\n"))
 
   #remove indls with missing values
  log <- append(log, paste0("No. of individuals (rows) before applying any filter: ", length(rownames(gData)), ".\n"))
@@ -37,19 +37,19 @@ log <- append(log, paste0("No. of markers (columns) remaining after filtering ou
   gData <- gData[noMissing <= ncol(gData) * indFilter]
   gData[, noMissing := NULL]
 
-  log <- append(log, paste0("No. of individuals (rows) remaining after filtering out ones with ", indFilter * 100, '% or more missing data: ',  length(rownames(gData)), ".\n"))
+  log <- append(log, paste0("No. of individuals (rows) remaining after filtering out individuals with ", indFilter * 100, '% or more missing data: ',  length(rownames(gData)), ".\n"))
 
   #remove monomorphic markers
-  log <- append(log, paste0("No. of markers remaining before applying monomorphic markers filter: ", length(names(gData)), ".\n"))
+  log <- append(log, paste0("No. of markers before applying monomorphic markers filter: ", length(names(gData)), ".\n"))
   gData[, which(apply(gData, 2,  function(x) length(unique(x))) < 2) := NULL ]
 
-  log <- append(log, paste0("No. of marker after filtering out monomorphic markers: ", length(names(gData)), ".\n"))
+  log <- append(log, paste0("No. of markers remaining after filtering out monomorphic markers: ", length(names(gData)), ".\n"))
 
   #remove markers with MAF
   log <- append(log, paste0("No of markers before applying MAF filter: ", length(names(gData)), ".\n"))
   gData[, which(apply(gData, 2,  calculateMAF) < maf) := NULL ]
 
-  log <- append(log, paste0("No. of markers remaining after filtering out ones with ", maf*100, '% or less minor allele frequency (MAF): ', length(names(gData)), ".\n"))
+  log <- append(log, paste0("No. of markers remaining after filtering out markers with ", maf*100, '% or less minor allele frequency (MAF): ', length(names(gData)), ".\n"))
 
   if (origDType == 'data.frame') {
     gData <- data.frame(gData)
