@@ -4,10 +4,10 @@
 \alias{convertToNumeric}
 \title{convert to numeric}
 \usage{
-convertToNumeric(gData)
+convertToNumeric(gData = gData)
 }
 \arguments{
-\item{x}{A data.frame or data.table of the dataset}
+\item{gData}{A data.frame or data.table of the dataset}
 }
 \value{
 a data.frame or data.table of the dataset with all columns converted to numeric.

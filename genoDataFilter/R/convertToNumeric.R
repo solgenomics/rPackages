@@ -2,14 +2,14 @@
 #'
 #' A function for converting an entire data.frame or data.table into numeric type.
 #'
-#' @param x A data.frame or data.table of the dataset
+#' @param gData A data.frame or data.table of the dataset
 #
 #' @return a data.frame or data.table of the dataset with all columns converted to numeric.
 #'
 #' @export
 #'
 #'
-convertToNumeric <- function(gData) {
+convertToNumeric <- function(gData=gData) {
 
   if (length(grep( "data.frame", class(gData))) < 1) {
     stop('The dataset is not a data.frame or data.table')

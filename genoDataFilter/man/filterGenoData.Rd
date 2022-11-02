@@ -4,7 +4,13 @@
 \alias{filterGenoData}
 \title{filters genotype dataset}
 \usage{
-filterGenoData(gData = genoDf, maf = 0, markerFilter = 0.6, indFilter = 0.8)
+filterGenoData(
+  gData = genoDf,
+  maf = 0,
+  markerFilter = 0.6,
+  indFilter = 0.8,
+  logReturn = FALSE
+)
 }
 \arguments{
 \item{gData}{A data.frame or data.table of the genotype dataset}
@@ -14,9 +20,11 @@ filterGenoData(gData = genoDf, maf = 0, markerFilter = 0.6, indFilter = 0.8)
 \item{markerFilter}{Fraction of missing values in a marker, 0 to 1. By default, markers with > 60 percent missing values are removed.}
 
 \item{indFilter}{Fraction of missing values in an accession/genotype, 0 to 1. By default, accessions with > 80 percent missing marker values are removed.}
+
+\item{logReturn}{logical indicating whether to return a log of the data filtering process. Default is FALSE.}
 }
 \value{
-A data.frame or data.table of the cleaned genotype dataset.
+A data.frame or data.table of the cleaned genotype dataset if the logReturn argument is set to FALSE; If TRUE, the function returns a list of the cleaned data and the log.
 }
 \description{
 A function for filtering genotype dataset based on minimum allele frequency, fraction of markers and accessions with missing values. It also filters out monomorphic markers.

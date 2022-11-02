@@ -2,7 +2,7 @@
 #'
 #' A function for rounding a dataset to a desired decimal place
 #'
-#' @param x A data.frame or data.table of the dataset
+#' @param gData A data.frame or data.table of the dataset
 #
 #' @param digits an integer, decimal places to round. Defaults to 0.
 #
@@ -11,7 +11,7 @@
 #' @export
 #'
 #'
-roundAlleleDosage <- function(gData, digits=0) {
+roundAlleleDosage <- function(gData=gData, digits=0) {
 
   if (length(grep( "data.frame", class(gData))) < 1) {
     stop('The genotype dataset is not a data.frame or data.table')
