@@ -1,7 +1,7 @@
 Package: phenoAnalysis
 Type: Package
 Title: Phenotype Data Analysis 
-Version: 0.3.6.9
+Version: 0.3.7.0
 Date: 07-05-2022
 Author: Isaak Y Tecle <iyt2@cornell.edu>
 Maintainer: Isaak Y Tecle <iyt2@cornell.edu>
@@ -17,4 +17,4 @@ Imports: dplyr,
          tibble,
          tidyselect
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.2.1

@@ -4,13 +4,13 @@
 \alias{getNumericCols}
 \title{removes non-numeric columns from a data frame}
 \usage{
-getNumericCols(phenoData = NULL, traits = NULL)
+getNumericCols(phenoData = NULL, exception = c("germplasmName"))
 }
 \arguments{
 \item{phenoData}{a data frame of the phenotype dataset}
 
-\item{traits}{a vector of trait columns to check if they are numeric or not. By default,
-all columns checked.}
+\item{exception}{a vector of columns to skip checking if they are numeric.
+By default, it skips the 'germplasmName' column.}
 }
 \value{
 a data frame of the phenotype dataset with without the non-numeric variables.
