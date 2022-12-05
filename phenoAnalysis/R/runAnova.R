@@ -29,7 +29,7 @@ runAnova <- function (trialData, traitName=NULL, genotypeEffectType='fixed', log
   if (is.na(studyDesign) == TRUE) {
     studyDesign <- c('No Design')
   } else {
-    log <- paste0(log,  'This trial has ', studyDesign, ' experimental design and ANOVA will be run accordingly to caculate the clone adjusted means.', "\n")
+    log <- paste0(log,  'This trial has ', studyDesign, ' experimental design and ANOVA will be run accordingly to calculate the clone adjusted means.', "\n")
   }
 
   log <- paste0(log, 'Genotypes are fitted as ', genotypeEffectType, ' effects where as the enviromental factors are fitted as random effects.', "\n")
