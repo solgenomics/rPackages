@@ -29,10 +29,14 @@ runAnova <- function (trialData, traitName=NULL, genotypeEffectType='fixed', log
   if (is.na(studyDesign) == TRUE) {
     studyDesign <- c('No Design')
   } else {
+    if (grepl("Alpha", studyDesign)) {
+      studyDesign = 'Alpha Lattice'
+    }
+
     log <- paste0(log,  'This trial has ', studyDesign, ' experimental design and ANOVA will be run accordingly to calculate the clone adjusted means.', "\n")
   }
 
-  log <- paste0(log, 'Genotypes are fitted as ', genotypeEffectType, ' effects where as the enviromental factors are fitted as random effects.', "\n")
+  log <- paste0(log, 'Genotypes are fitted as ', genotypeEffectType, ' effects where as the environmental factors are fitted as random effects.', "\n")
   if (studyDesign == 'RCBD' && length(unique(traitData$blockNumber)) > 1) {
      if (genotypeEffectType == 'fixed') {
           modelOut   <- fixedRCBD(traitData, traitName)
