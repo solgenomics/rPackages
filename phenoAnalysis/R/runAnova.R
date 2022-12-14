@@ -19,7 +19,7 @@ runAnova <- function (trialData, traitName=NULL, genotypeEffectType='fixed', log
   }
 
   trialName <- trialData[2, 'studyName']
-  log <- paste0('Running ANOVA for trait ', traitName, ' from trial ', trialName , "\n")
+  log <- paste0('Running ANOVA for trait ', traitName, ' from trial ', trialName, ".\n\n")
 
   traitData <- structureTraitData(trialData, traitName=traitName)
   modelOut  <- c()
@@ -33,10 +33,10 @@ runAnova <- function (trialData, traitName=NULL, genotypeEffectType='fixed', log
       studyDesign = 'Alpha Lattice'
     }
 
-    log <- paste0(log,  'This trial has ', studyDesign, ' experimental design and ANOVA will be run accordingly to calculate the clone adjusted means.', "\n")
+    log <- paste0(log,  'This trial has ', studyDesign, ' experimental design and ANOVA will be run accordingly to calculate the clone adjusted means.', "\n\n")
   }
 
-  log <- paste0(log, 'Genotypes are fitted as ', genotypeEffectType, ' effects where as the environmental factors are fitted as random effects.', "\n")
+  log <- paste0(log, 'Genotypes are fitted as ', genotypeEffectType, ' effects where as the environmental factors are fitted as random effects.', "\n\n")
   if (studyDesign == 'RCBD' && length(unique(traitData$blockNumber)) > 1) {
      if (genotypeEffectType == 'fixed') {
           modelOut   <- fixedRCBD(traitData, traitName)
