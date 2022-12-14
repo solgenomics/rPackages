@@ -43,7 +43,7 @@ runAnova <- function (trialData, traitName=NULL, genotypeEffectType='fixed', log
     } else {
           modelOut   <- randomRCBD(traitData, traitName)
     }
-  } else if (studyDesign == 'Augmented' &&  length(unique(traitData$blockNumber)) > 1) {
+  } else if (grepl('Augmented', studyDesign) &&  length(unique(traitData$blockNumber)) > 1) {
 
       if (genotypeEffectType == 'fixed') {
           modelOut   <- fixedAugmentedRCBD(traitData, traitName)
@@ -59,7 +59,7 @@ runAnova <- function (trialData, traitName=NULL, genotypeEffectType='fixed', log
           modelOut   <- randomCRD(traitData, traitName)
       }
 
-  } else if (studyDesign == 'Alpha') {
+  } else if (grepl('Alpha', studyDesign)) {
 
       if (genotypeEffectType == 'fixed') {
           modelOut  <- fixedAlpha(traitData, traitName)
