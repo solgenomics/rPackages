@@ -4,7 +4,12 @@
 \alias{runAnova}
 \title{fits model and returns the model output summary}
 \usage{
-runAnova(trialData, traitName = NULL, genotypeEffectType = "fixed")
+runAnova(
+  trialData,
+  traitName = NULL,
+  genotypeEffectType = "fixed",
+  logReturn = FALSE
+)
 }
 \arguments{
 \item{trialData}{a dataframe of the trial dataset, of the BrAPI structure and naming convention.}
@@ -12,6 +17,8 @@ runAnova(trialData, traitName = NULL, genotypeEffectType = "fixed")
 \item{traitName}{a character vector of the trait name of interest in the dataset.}
 
 \item{genotypeEffectType}{a character vector indicating the genotype effect type. By default, genotypes variable is considered fixed effects.}
+
+\item{logReturn}{logical indicating whether to return a log of the ANOVA. Default is FALSE.}
 }
 \value{
 a summary of the model output.

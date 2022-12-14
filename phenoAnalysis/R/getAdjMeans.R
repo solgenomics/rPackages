@@ -7,6 +7,7 @@
 #' @param genotypeEffectType a character vector indicating the genotype effect type. By default, germplasmName variable is considered fixed effects.
 #' @param adjMeansVariable name of the variable adjusted means to calculate for, the default is germplasmName.
 #' @param calcAverages logical. Defaults to FALSE. If TRUE, returns the trait averages, if modeling fails and can't calculate BLUEs or BLUPs.
+#' @param logReturn logical indicating whether to return a log of the adjusted means calculation. Default is FALSE.
 #' @return a dataframe of the adjusted means for the genotypes.
 #' @export
 #'
@@ -16,37 +17,55 @@ getAdjMeans <- function (trialData=NULL,
                          modelOut=NULL,
                          genotypeEffectType='fixed',
                          adjMeansVariable='germplasmName',
-                         calcAverages=FALSE) {
+                         calcAverages=FALSE,
+                         logReturn=FALSE) {
 
   if (is.null(traitName)) stop('Trait name is missing.')
 
   if (is.null(trialData) & is.null(modelOut)) {
-    stop('You need to provide either a trial data or a model (from lmer).')
+    stop('You need to provide either a trial data or a model object (from lmer).')
   }
 
+  log <- c()
   if (!is.null(trialData) & is.null(modelOut)) {
-      modelOut <- runAnova(trialData,
+      anovaOut <- runAnova(trialData,
                            traitName=traitName,
-                           genotypeEffectType=genotypeEffectType)
+                           genotypeEffectType=genotypeEffectType,
+                           logReturn=logReturn)
+      if (logReturn) {
+        modelOut <- anovaOut$modelOut
+        log <- anovaOut$log
+      } else {
+        modelOut <- anovaOut
+      }
   }
 
+  adjMeans <- c()
   if (class(modelOut)[1] == 'lmerModLmerTest' || class(modelOut)[1] == 'merModLmerTest') {
     adjMeans <- structureAdjMeans(modelOut,
                                   traitName,
                                   genotypeEffectType=genotypeEffectType,
                                   adjMeansVariable=adjMeansVariable)
 
-    return (adjMeans)
-  } else if (calcAverages && !is.null(trialData)) {
+  } else if (calcAverages) {
+
+    if (is.null(trialData)){
+      stop('You need to provide the trial data argument to calculate averages.')
+    }
+
     adjMeans <- averageTrait(trialData,
                              traitName,
                              meansVariable=adjMeansVariable)
 
-    return (adjMeans)
-  } else if (calcAverages && is.null(trialData)) {
-    return ('ERROR: You need to provide the trial data argument to calculate averages.')
+    log <- paste0('The ', adjMeansVariable, ' ', traitName, ' values are results of arithmetic averaging.', "\n")
+
+  }
+
+  if (logReturn) {
+    return (list("adjMeans" = adjMeans, "log" = log))
   } else {
-    return (modelOut)
+
+    return(adjMeans)
   }
 
 }
