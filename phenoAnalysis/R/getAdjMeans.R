@@ -59,8 +59,8 @@ getAdjMeans <- function (trialData=NULL,
                              meansVariable=adjMeansVariable)
 
     trialName <- trialData[2, 'studyName']
-    log <- paste0('Trial ', trialName, 'does not have a proper experimental design. Therefore ANOVA was not run on the trial to calculate the trait adjusted means.\n')
-    log <- append(log, paste0('The ', traitName, 'values are arithmetic averages.\n\n'))
+    log <- paste0("Trial ", trialName, " does not have a proper experimental design. Therefore ANOVA was not run on the trial to calculate the trait adjusted means.\n")
+    log <- append(log, paste0("The ", traitName, " values for the traial are arithmetic averages.\n\n"))
 
   }
 
