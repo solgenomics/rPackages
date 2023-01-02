@@ -26,6 +26,7 @@ getAdjMeans <- function (trialData=NULL,
     stop('You need to provide either a trial data or a model object (from lmer).')
   }
 
+
   log <- c()
   if (!is.null(trialData) & is.null(modelOut)) {
       anovaOut <- runAnova(trialData,
@@ -57,7 +58,9 @@ getAdjMeans <- function (trialData=NULL,
                              traitName,
                              meansVariable=adjMeansVariable)
 
-    log <- paste0('The ', adjMeansVariable, ' ', traitName, ' values are results of arithmetic averaging.', "\n")
+    trialName <- trialData[2, 'studyName']
+    log <- paste0('Trial ', trialName, 'does not have a proper experimental design. Therefore ANOVA was not run on the trial to calculate the trait adjusted means.\n')
+    log <- append(log, paste0('The ', traitName, 'values are arithmetic averages.\n\n'))
 
   }
 
