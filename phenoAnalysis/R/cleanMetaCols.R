@@ -38,6 +38,6 @@ cleanMetaCols <- function(metaDataFile=NULL,
   traitNames <- allCols[!(allCols %in% metaData)]
 
   selectCols <- c(keepMetaCols, traitNames)
-  phenoData  <- phenoData %>% select(selectCols)
+  phenoData  <- phenoData %>% select(across(all_of(selectCols)))
 
 }

@@ -57,11 +57,11 @@ combinePhenoData <- function(phenoFiles = NULL,
               selectCols   <- c(keepMetaCols, commonTraits)
 
               phenoData <- phenoData %>%
-                           select(selectCols) %>%
+                           select(across(all_of(selectCols))) %>%
                            data.frame
 
               combinedPhenoData <- combinedPhenoData %>%
-                                  select(selectCols) %>%
+                                  select(across(all_of(selectCols))) %>%
                                   data.frame
 
           }
