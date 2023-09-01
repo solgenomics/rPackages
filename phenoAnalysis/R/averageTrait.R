@@ -25,12 +25,12 @@ averageTrait <- function(traitData,
   traitData   <- data.frame(traitData)
 
 
-  calMean <- paste0('mean(', traitName, ', na.rm=TRUE)')
-  aveCol  <- traitName
+  #calMean <- paste0('mean(', traitName, ', na.rm=TRUE)')
+  #aveCol  <- traitName
 
   traitAverage <- traitData %>%
-    group_by_(meansVariable) %>%
-    summarise_(.dots = setNames(calMean, aveCol))
+    group_by(meansVariable) %>%
+    summarise(traitName = mean(traitName))
 
   traitAverage <- data.frame(traitAverage)
   names(traitAverage)[2] <- paste0(traitName, '_Arithmetic_mean')

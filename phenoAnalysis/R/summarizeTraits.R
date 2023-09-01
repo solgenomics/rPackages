@@ -42,7 +42,7 @@ summarizeTraits <- function(phenoData=NULL,
   }
 
   summaryData <- phenoData %>%
-                 group_by_(.dots=groupBy) %>%
+                 group_by(groupBy) %>%
                  summarise_at(traitsCols, summaryStat, na.rm=TRUE) %>%
                  select(which(colSums(is.na(.)) != nrow(.) ))
 
