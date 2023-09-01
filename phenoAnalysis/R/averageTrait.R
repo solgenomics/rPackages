@@ -30,7 +30,7 @@ averageTrait <- function(traitData,
 
   traitAverage <- traitData %>%
     group_by(across(all_of(meansVariable))) %>%
-    summarise({{traitName}} = mean({{traitName}}))
+    summarise(traitName = mean({{traitName}}))
 
   traitAverage <- data.frame(traitAverage)
   names(traitAverage)[2] <- paste0(traitName, '_Arithmetic_mean')
