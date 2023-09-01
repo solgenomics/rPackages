@@ -44,7 +44,7 @@ summarizeTraits <- function(phenoData=NULL,
   summaryData <- phenoData %>%
                  group_by(across(all_of(groupBy))) %>%
                  summarise_at(across(all_of(traitsCols)), summaryStat, na.rm=TRUE) %>%
-                 select(which(colSums(is.na(.)) != nrow(.) ))
+                 select(where(~!all(is.na(.x))))
 
   summaryData[summaryData == 'NaN'] <- NA
 
