@@ -1,7 +1,7 @@
 Package: phenoAnalysis
 Type: Package
 Title: Phenotype Data Analysis 
-Version: 0.3.8
+Version: 0.3.8.1
 Date: 01-09-2023
 Author: Isaak Y Tecle <iyt2@cornell.edu>
 Maintainer: Isaak Y Tecle <iyt2@cornell.edu>
