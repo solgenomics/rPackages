@@ -4,7 +4,12 @@
 \alias{averageTrait}
 \title{calculates average trait values for genotypes}
 \usage{
-averageTrait(traitData, traitName, meansVariable = "germplasmName")
+averageTrait(
+  traitData,
+  traitName,
+  meansVariable = "germplasmName",
+  averageType = c("mean")
+)
 }
 \arguments{
 \item{traitData}{a data frame of the data set}
@@ -12,6 +17,8 @@ averageTrait(traitData, traitName, meansVariable = "germplasmName")
 \item{traitName}{a character vector or string of the trait name of interest in the dataset.}
 
 \item{meansVariable}{name of the variable averages to calculate for, the default is germplasmName.}
+
+\item{averageType}{character vector of type(s) of averages (mean or median) to calculate, the default is mean.}
 }
 \value{
 a dataframe of genotypes mean trait values.
