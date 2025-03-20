@@ -28,7 +28,7 @@ combineGenoData <- function(allGenoFiles = NULL) {
     genoData <- rename(genoData, genotypes='V1')
 
     popGenoFile <- basename(popGenoFile)
-    popId       <- str_extract(popGenoFile, "\\d+")
+    popId <- str_extract(popGenoFile, "list_\\d+|dataset_\\d+|\\d+")
     popIds      <- c(popIds, popId)
 
     genoData$trial <- popId
@@ -64,7 +64,7 @@ combineGenoData <- function(allGenoFiles = NULL) {
   }
 
   comboGenoMetaData <- comboGenoMetaData %>%
-                          mutate_at(vars(starts_with('trial')), as.numeric)
+                          mutate_at(vars(starts_with('trial')), as.character)
 
   comboGenoMetaData <- comboGenoMetaData %>%
                           mutate(tr_gr = concatenate(.))
