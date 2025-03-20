@@ -1,7 +1,7 @@
 Package: genoDataFilter
 Type: Package
 Title: Filters Genotype Dataset
-Version: 0.1.4.34
+Version: 0.1.4.4
 Date: 20-03-2025
 Author: Isaak Y Tecle
 Maintainer: Isaak Y Tecle <iyt2@cornell.edu>

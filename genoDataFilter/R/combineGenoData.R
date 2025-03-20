@@ -18,7 +18,6 @@ combineGenoData <- function(allGenoFiles = NULL) {
 
   for (popGenoFile in allGenoFiles) {
 
-    uniqGenoNames <- c()
     cnt <- cnt + 1
 
     genoData <- fread(popGenoFile,
