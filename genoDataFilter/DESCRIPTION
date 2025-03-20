@@ -1,8 +1,8 @@
 Package: genoDataFilter
 Type: Package
 Title: Filters Genotype Dataset
-Version: 0.1.4.3
-Date: 31-10-2022
+Version: 0.1.4.34
+Date: 20-03-2025
 Author: Isaak Y Tecle
 Maintainer: Isaak Y Tecle <iyt2@cornell.edu>
 Description: Filters genotype dataset for monomorphic markers, markers with minimum allele frequency (MAF) (e.g., < 5%), markers and accessions with missing values above given fraction.

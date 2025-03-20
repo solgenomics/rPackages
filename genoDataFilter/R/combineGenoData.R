@@ -44,10 +44,9 @@ combineGenoData <- function(allGenoFiles = NULL) {
        genoMetaData <- genoData %>% select(genotypes, trial)
        comboGenoMetaData <- full_join(comboGenoMetaData, genoMetaData, by="genotypes")
 
-       uniqGenoNames <- unique(rownames(combinedGenoPops))
-       genoData <- genoData[!(rownames(genoData) %in% uniqGenoNames),]
+       genoData <- genoData[!(genoData$genotypes %in% unique(combinedGenoPops$genotypes)),]
 
-      if (!is.null(genoData)) {
+       if (!is.null(genoData)) {
           combinedGenoPops <- rbind(combinedGenoPops, genoData)
        } else {
          message('dataset ', popId, ' has no unique genotypes.')
