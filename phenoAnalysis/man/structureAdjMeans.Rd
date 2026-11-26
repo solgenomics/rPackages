@@ -19,9 +19,8 @@ structureAdjMeans(
 \item{adjMeansVariable}{name of the variable adjusted means to calculate for, the default is germplasmName.}
 }
 \value{
-a dataframe of the adjusted means for the genotypes. The fixed effects means have
-  6 significant digits and at least 2 decimals, so the means of a trait with small values
-  do not become equal.
+a dataframe of the adjusted means for the genotypes. Fixed effects means are
+  returned at the full numeric precision of the model estimates.
 }
 \description{
 calculates the genotype adjusted means for a trait.
