@@ -69,7 +69,7 @@ compareMeans <- function(modelOut, factor='germplasmName', alpha=0.05, df=NULL, 
   means     <- means[estimable]
   variances <- diag(covMatrix)
   sed <- sqrt(pmax(outer(variances, variances, '+') - 2 * covMatrix, 0))
-  lsd <- stats::qt(1 - alpha / 2, df) * sed
+  lsd <- stats::qt(alpha / 2, df, lower.tail=FALSE) * sed
 
   pairs <- upper.tri(sed)
   differ <- abs(outer(means, means, '-')) > lsd
@@ -96,7 +96,7 @@ compareMeans <- function(modelOut, factor='germplasmName', alpha=0.05, df=NULL, 
   meansTable <- data.frame(level=names(means)[ordered],
                            mean=unname(means[ordered]),
                            SE=summ$SE[estimable][ordered],
-                           group=unname(groups[names(means)[ordered]]),
+                           group=unname(groups[match(names(means)[ordered], names(groups))]),
                            stringsAsFactors=FALSE)
   names(meansTable)[1] <- factor
 
