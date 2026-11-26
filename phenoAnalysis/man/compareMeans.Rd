@@ -21,7 +21,7 @@ compareMeans(
 \item{alpha}{the significance level. Default is 0.05.}
 
 \item{df}{the degrees of freedom of the t quantile. By default the denominator
-degrees of freedom of the F test of the factor: Satterthwaite's for an lmer model,
+degrees of freedom of the joint F test: Satterthwaite's for an lmer model,
 the residual degrees of freedom for an lm model.}
 
 \item{maxGroupLevels}{the largest number of levels that get letter groups. Default is 100.}
@@ -31,18 +31,21 @@ a list with:
   \code{means}, a data frame of the levels sorted by mean, largest first, with the
   columns of the level, mean, SE (standard error of the mean) and group (letters);
   \code{lsd} and \code{sed}, the mean, smallest and largest LSD and SED of all pairs;
-  \code{df}, \code{alpha}, \code{pValue} (the F test of the factor) and
-  \code{significant} (TRUE when pValue < alpha) and \code{note}, why the letters
-  are all "a" or missing, NULL otherwise. The values are not rounded.
+  \code{df}, \code{alpha}, \code{pValue} (the joint F test) and
+  \code{significant} (TRUE when pValue < alpha) and \code{note}, a message
+  when the F test is nonsignificant or letters are omitted, NULL otherwise.
+  The values are not rounded.
 }
 \description{
 Takes a fitted model, so that ANOVA, mixed models and other tools can use it.
 The means are the estimated marginal means (adjusted means) of the factor.
-Two means differ when their difference is larger than the LSD of the pair,
-t(1 - alpha/2, df) times the standard error of the difference (SED). The SED
-comes from the covariance matrix of the means, so each pair has its own LSD
-in an unbalanced trial. The letter groups follow Fisher's protected LSD:
-they are given only when the F test of the factor is significant at alpha;
-otherwise all the levels share the letter "a". Letters are given for up to
-maxGroupLevels levels: with more levels they are hard to read and slow to find.
+Fisher's protected LSD first tests whether the reported means are jointly
+equal. If the F test is significant at alpha, a pair differs when its
+absolute difference exceeds its LSD, t(1 - alpha/2, df) times the standard
+error of the difference (SED). The SED comes from the covariance matrix of
+the means and can vary by pair in an unbalanced trial. The reported LSD
+summaries describe the thresholds across pairs. Use the letters for pairwise
+decisions when they are shown.
+With a nonsignificant F test, all levels share the letter "a" when letters
+are shown. Above maxGroupLevels, letters are omitted for either test result.
 }
