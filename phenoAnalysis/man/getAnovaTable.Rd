@@ -17,6 +17,8 @@ getAnovaTable(modelOut, tableType = NULL, traitName = NULL, ...)
 }
 \value{
 a stargazer formatted anova table of chosen type, html type by default.
+  The values have 4 significant digits and the p value 3, so a small p value
+  shows as 1.3e-06, not 0, and a trait with small values keeps them.
 }
 \description{
 Generates the anova table

@@ -16,5 +16,8 @@ Imports: dplyr,
          stargazer,
          tibble,
          tidyselect
+Suggests: agricolae,
+          lme4,
+          testthat
 LazyData: true
 RoxygenNote: 7.2.1

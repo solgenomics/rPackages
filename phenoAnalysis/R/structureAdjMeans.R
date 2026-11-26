@@ -4,7 +4,8 @@
 #' @param modelOut a lmer model output.
 #' @param traitName a character vector or string of the trait name of interest in the dataset.
 #' @param adjMeansVariable name of the variable adjusted means to calculate for, the default is germplasmName.
-#' @return a dataframe of the adjusted means for the genotypes.
+#' @return a dataframe of the adjusted means for the genotypes. Fixed effects means are
+#'   returned at the full numeric precision of the model estimates.
 #' @export
 #'
 
@@ -18,7 +19,6 @@ structureAdjMeans <- function(modelOut,
     genolsmeanSumm <- summary(genolsmean)
     genoMeans      <- genolsmeanSumm[c(adjMeansVariable, 'lsmean')]
 
-    genoMeans$lsmean    <- round(genoMeans$lsmean, 2)
     names(genoMeans)[2] <- paste0(traitName, '_Adjusted_means_fixed_effects')
 
     return(genoMeans)
